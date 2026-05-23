@@ -278,7 +278,7 @@ export default function Home() {
               <h2 className="text-4xl font-black text-neutral-900 mb-4">
                 Why Choose
                 <br />
-                <span className="text-blue-600">Jay&apos;s Car Cleaning?</span>
+                <span className="text-blue-600">Clean Lab Detailing?</span>
               </h2>
               <p className="text-neutral-500 text-lg mb-8 leading-relaxed">
                 We&apos;re not just a car wash — we&apos;re a mobile detailing

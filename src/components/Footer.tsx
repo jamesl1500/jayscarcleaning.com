@@ -12,7 +12,7 @@ export default function Footer() {
                 <span className="text-white font-black text-sm">J</span>
               </div>
               <span className="text-white font-bold text-base">
-                Jay&apos;s Car Cleaning
+                Clean Lab Detailing
               </span>
             </div>
             <p className="text-sm leading-relaxed">
@@ -95,10 +95,10 @@ export default function Footer() {
                   />
                 </svg>
                 <a
-                  href="mailto:jay@jayscarcleaning.com"
+                  href="mailto:info@cleanlabdetailing.com"
                   className="hover:text-white transition-colors"
                 >
-                  jay@jayscarcleaning.com
+                  info@cleanlabdetailing.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -133,7 +133,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-neutral-600">
-          <span>© {new Date().getFullYear()} Jay&apos;s Car Cleaning. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Clean Lab Detailing. All rights reserved.</span>
           <span>
             Built by{' '}
             <a

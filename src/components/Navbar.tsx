@@ -22,7 +22,7 @@ export default function Navbar() {
             <span className="text-white font-black text-sm">J</span>
           </div>
           <span className="text-white font-bold text-base tracking-tight">
-            Jay&apos;s <span className="text-blue-400">Car Cleaning</span>
+            Clean Lab <span className="text-blue-400">Detailing</span>
           </span>
         </Link>
 

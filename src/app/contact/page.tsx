@@ -31,6 +31,8 @@ const vehicleTypes = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [form, setForm] = useState({
     name: '',
@@ -56,10 +58,38 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // In production this would submit to an API / email service
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          vehicle: form.vehicle,
+          pkg: form.package,
+          date: form.date,
+          addons: selectedAddons,
+          notes: form.notes,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -311,11 +341,18 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {error && (
+                    <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                      {error}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-full text-base transition-colors"
+                    disabled={loading}
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-full text-base transition-colors"
                   >
-                    Submit Booking Request
+                    {loading ? 'Sending…' : 'Submit Booking Request'}
                   </button>
                   <p className="text-xs text-neutral-400 text-center">
                     We&apos;ll confirm your appointment within 24 hours via
@@ -376,10 +413,10 @@ export default function ContactPage() {
                     <div>
                       <p className="text-xs text-neutral-500 mb-0.5">Email</p>
                       <a
-                        href="mailto:jay@jayscarcleaning.com"
+                        href="mailto:info@cleanlabdetailing.com"
                         className="text-white font-semibold hover:text-blue-400 transition-colors text-sm break-all"
                       >
-                        jay@jayscarcleaning.com
+                        info@cleanlabdetailing.com
                       </a>
                     </div>
                   </li>

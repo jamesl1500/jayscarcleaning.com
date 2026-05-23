@@ -10,7 +10,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Jay's Car Cleaning | Mobile Car Detailing",
+  title: "Clean Lab Detailing | Mobile Car Detailing",
   description:
     "Professional mobile car detailing brought to your door. Hand wash exterior, interior detailing, and full detail packages starting at $50.",
 };
