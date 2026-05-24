@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -18,9 +19,7 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-            <span className="text-white font-black text-sm">J</span>
-          </div>
+          <Image src="/icon-512.png" alt="Clean Lab Detailing logo" width={32} height={32} className="rounded-full" />
           <span className="text-white font-bold text-base tracking-tight">
             Clean Lab <span className="text-blue-400">Detailing</span>
           </span>

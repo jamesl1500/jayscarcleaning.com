@@ -37,12 +37,22 @@ export const metadata: Metadata = {
     title: "Clean Lab Detailing | Mobile Car Detailing",
     description:
       "Professional mobile car detailing delivered to your door. Hand wash exterior, interior detailing, and full detail packages starting at $50.",
+    images: [{ url: "/icon-512.png", width: 512, height: 512, alt: "Clean Lab Detailing" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Clean Lab Detailing | Mobile Car Detailing",
     description:
       "Professional mobile car detailing delivered to your door. Packages starting at $50.",
+    images: ["/icon-512.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png" }],
   },
   robots: {
     index: true,

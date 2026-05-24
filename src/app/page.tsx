@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const packages = [
   {
@@ -127,7 +128,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
             {[
-              { value: '500+', label: 'Cars Detailed' },
+              { value: '100+', label: 'Cars Detailed' },
               { value: '5★', label: 'Average Rating' },
               { value: '100%', label: 'Mobile Service' },
               { value: '3', label: 'Detail Packages' },
@@ -359,6 +360,58 @@ export default function Home() {
                 className="mt-6 block text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-full transition-colors"
               >
                 View All Add-Ons
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── About Us ─────────────────────────────────────────────── */}
+      <section className="py-24 bg-neutral-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Headshot */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden ring-4 ring-blue-500/30 shadow-2xl">
+                <Image
+                  src="/Latten, James Headshot.jpg"
+                  alt="James Latten — Owner of Clean Lab Detailing"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
+                />
+              </div>
+            </div>
+
+            {/* Copy */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-blue-600/10 border border-blue-600/30 text-blue-400 text-sm font-medium px-4 py-2 rounded-full mb-6">
+                About Us
+              </div>
+              <h2 className="text-4xl font-black text-white mb-4">
+                Meet the Owner,
+                <br />
+                <span className="text-blue-400">James Latten</span>
+              </h2>
+              <p className="text-neutral-400 text-lg leading-relaxed mb-5">
+                Hi, I&apos;m James — founder and lead detailer at Clean Lab Detailing.
+                My passion for cars and commitment to quality led me to start a detailing
+                service that puts the customer first.
+              </p>
+              <p className="text-neutral-400 leading-relaxed mb-8">
+                I bring professional-grade products, meticulous attention to detail, and
+                a genuine love for the craft to every job. Whether it&apos;s a quick
+                exterior wash or a full interior &amp; exterior detail, I treat every
+                vehicle like my own.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 py-3.5 rounded-full transition-colors"
+              >
+                Book With James
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Link>
             </div>
           </div>
