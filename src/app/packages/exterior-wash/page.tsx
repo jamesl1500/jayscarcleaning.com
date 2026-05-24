@@ -1,4 +1,17 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Exterior Car Wash — $50",
+  description:
+    "Professional hand wash exterior detailing package for $50. Includes pre-rinse, two-bucket wash, wheel & rim cleaning, tire dressing, window cleaning, and more.",
+  openGraph: {
+    title: "Exterior Car Wash — $50 | Clean Lab Detailing",
+    description:
+      "Hand wash exterior package starting at $50. Pre-rinse, wheel cleaning, tire dressing, bug & tar removal, and a streak-free finish.",
+    url: "https://www.jayscarcleaning.com/packages/exterior-wash",
+  },
+};
 
 const included = [
   {

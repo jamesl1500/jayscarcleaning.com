@@ -1,4 +1,17 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Interior Car Detailing — $75",
+  description:
+    "Deep interior car detailing package for $75. Full vacuum, dashboard cleaning, seat conditioning, floor mat shampoo, window cleaning, and more. Mobile service.",
+  openGraph: {
+    title: "Interior Car Detailing — $75 | Clean Lab Detailing",
+    description:
+      "Interior detail package for $75. We vacuum, shampoo, wipe, and condition every surface — delivered to your door.",
+    url: "https://www.jayscarcleaning.com/packages/interior-detailing",
+  },
+};
 
 const included = [
   {

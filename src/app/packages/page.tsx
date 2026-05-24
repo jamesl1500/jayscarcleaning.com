@@ -1,4 +1,17 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Detailing Packages & Pricing",
+  description:
+    "Browse Clean Lab Detailing's mobile car detailing packages — Exterior Wash ($50), Interior Detail ($75), and Full Detail ($120). Delivered to your door.",
+  openGraph: {
+    title: "Detailing Packages & Pricing | Clean Lab Detailing",
+    description:
+      "Mobile car detailing packages starting at $50. Exterior wash, interior detail, and full detail — we come to you.",
+    url: "https://www.jayscarcleaning.com/packages",
+  },
+};
 
 const packages = [
   {
