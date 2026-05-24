@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Exterior Car Wash — $50 | Clean Lab Detailing",
     description:
       "Hand wash exterior package starting at $50. Pre-rinse, wheel cleaning, tire dressing, bug & tar removal, and a streak-free finish.",
-    url: "https://www.jayscarcleaning.com/packages/exterior-wash",
+    url: "https://www.cleanlabdetailing.com/packages/exterior-wash",
   },
 };
 

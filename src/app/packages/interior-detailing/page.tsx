@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Interior Car Detailing — $75 | Clean Lab Detailing",
     description:
       "Interior detail package for $75. We vacuum, shampoo, wipe, and condition every surface — delivered to your door.",
-    url: "https://www.jayscarcleaning.com/packages/interior-detailing",
+    url: "https://www.cleanlabdetailing.com/packages/interior-detailing",
   },
 };
 

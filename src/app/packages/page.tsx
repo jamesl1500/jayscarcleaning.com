@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Detailing Packages & Pricing | Clean Lab Detailing",
     description:
       "Mobile car detailing packages starting at $50. Exterior wash, interior detail, and full detail — we come to you.",
-    url: "https://www.jayscarcleaning.com/packages",
+    url: "https://www.cleanlabdetailing.com/packages",
   },
 };
 

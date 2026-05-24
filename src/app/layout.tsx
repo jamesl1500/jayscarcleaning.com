@@ -10,7 +10,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.jayscarcleaning.com"),
+  metadataBase: new URL("https://www.cleanlabdetailing.com"),
   title: {
     default: "Clean Lab Detailing | Mobile Car Detailing",
     template: "%s | Clean Lab Detailing",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.jayscarcleaning.com",
+    url: "https://www.cleanlabdetailing.com",
     siteName: "Clean Lab Detailing",
     title: "Clean Lab Detailing | Mobile Car Detailing",
     description:
@@ -68,7 +68,7 @@ export default function RootLayout({
     name: "Clean Lab Detailing",
     description:
       "Professional mobile car detailing delivered to your door. Hand wash exterior, interior detailing, and full detail packages starting at $50.",
-    url: "https://www.jayscarcleaning.com",
+    url: "https://www.cleanlabdetailing.com",
     telephone: "+12168897822",
     email: "info@cleanlabdetailing.com",
     areaServed: {
@@ -100,7 +100,7 @@ export default function RootLayout({
           itemOffered: {
             "@type": "Service",
             name: "Exterior Wash",
-            url: "https://www.jayscarcleaning.com/packages/exterior-wash",
+            url: "https://www.cleanlabdetailing.com/packages/exterior-wash",
           },
           price: "50",
           priceCurrency: "USD",
@@ -110,7 +110,7 @@ export default function RootLayout({
           itemOffered: {
             "@type": "Service",
             name: "Interior Detail",
-            url: "https://www.jayscarcleaning.com/packages/interior-detailing",
+            url: "https://www.cleanlabdetailing.com/packages/interior-detailing",
           },
           price: "75",
           priceCurrency: "USD",
@@ -120,7 +120,7 @@ export default function RootLayout({
           itemOffered: {
             "@type": "Service",
             name: "Full Detail",
-            url: "https://www.jayscarcleaning.com/packages/full-detail",
+            url: "https://www.cleanlabdetailing.com/packages/full-detail",
           },
           price: "120",
           priceCurrency: "USD",

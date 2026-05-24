@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Book a Mobile Car Detail | Clean Lab Detailing",
     description:
       "Schedule your mobile car detailing appointment. Exterior wash, interior detail, or full detail — we come to your door.",
-    url: "https://www.jayscarcleaning.com/contact",
+    url: "https://www.cleanlabdetailing.com/contact",
   },
 };
 

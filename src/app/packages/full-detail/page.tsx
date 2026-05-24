@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Full Car Detail — $120 | Clean Lab Detailing",
     description:
       "The ultimate mobile detail for $120. Everything inside and out — showroom ready, delivered to your driveway.",
-    url: "https://www.jayscarcleaning.com/packages/full-detail",
+    url: "https://www.cleanlabdetailing.com/packages/full-detail",
   },
 };
 
