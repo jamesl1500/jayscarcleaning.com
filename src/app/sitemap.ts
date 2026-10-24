@@ -1,44 +1,21 @@
 import type { MetadataRoute } from 'next';
+import { packages, serviceAreas, site } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.cleanlabdetailing.com';
+  const lastModified = new Date(site.lastUpdated);
+  const entry = (path: string, priority: number, changeFrequency: 'monthly' | 'yearly' = 'monthly') => ({
+    url: new URL(path, site.url).toString(),
+    lastModified,
+    changeFrequency,
+    priority,
+  });
 
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/packages`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/packages/exterior-wash`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/packages/interior-detailing`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/packages/full-detail`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.7,
-    },
+    entry('/', 1),
+    entry('/packages', 0.9),
+    ...packages.map((p) => entry(`/packages/${p.slug}`, 0.8)),
+    entry('/service-areas', 0.8),
+    ...serviceAreas.map((a) => entry(`/service-areas/${a.slug}`, a.homeBase ? 0.8 : 0.7)),
+    entry('/contact', 0.7, 'yearly'),
   ];
 }

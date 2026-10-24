@@ -1,23 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-}
+/* Brand palette pulled from the Clean Lab logo: deep navy + "lab liquid" teal. */
+@theme {
+  --color-navy-950: #04121a;
+  --color-navy-900: #0a2230;
+  --color-navy-800: #0e2b3a;
+  --color-navy-700: #143a4b;
+  --color-navy-600: #1d4c60;
+  --color-navy-500: #2f6278;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-teal-200: #a5f0f6;
+  --color-teal-300: #67e3ee;
+  --color-teal-400: #1fc9d9;
+  --color-teal-500: #0fa3bd;
+  --color-teal-600: #0b849a;
+  --color-teal-700: #0a6a7c;
+  --color-teal-800: #0b5463;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  --color-mist-50: #f4f8fa;
+  --color-mist-100: #e8f0f3;
+  --color-mist-200: #d3e1e7;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-navy-900);
+}
+
+::selection {
+  background: var(--color-teal-300);
+  color: var(--color-navy-900);
+}
+
+/* FAQ disclosure marker */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
