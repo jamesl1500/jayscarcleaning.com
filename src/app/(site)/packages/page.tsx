@@ -65,21 +65,22 @@ export default function PackagesPage() {
       </section>
 
       {/* Comparison */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 sm:py-24">
         <Container className="max-w-5xl">
           <SectionHeading eyebrow="Compare" title="What's included in each package" />
-          <div className="overflow-x-auto rounded-3xl ring-1 ring-mist-200">
-            <table className="w-full min-w-[36rem] text-left text-sm">
+          <div className="overflow-hidden rounded-2xl ring-1 ring-mist-200 sm:rounded-3xl">
+            <table className="w-full table-fixed text-left text-xs sm:text-sm">
               <caption className="sr-only">Package comparison</caption>
               <thead className="bg-navy-900 text-white">
                 <tr>
-                  <th scope="col" className="px-5 py-4 font-semibold">
+                  <th scope="col" className="w-[44%] px-3 py-3 font-semibold sm:w-auto sm:px-5 sm:py-4">
                     Service
                   </th>
                   {packages.map((p) => (
-                    <th key={p.slug} scope="col" className="px-5 py-4 text-center font-semibold">
-                      {p.name}
-                      <span className="block text-lg font-black text-teal-300">{usd(p.price)}</span>
+                    <th key={p.slug} scope="col" className="px-1 py-3 text-center font-semibold sm:px-5 sm:py-4">
+                      <span className="sm:hidden">{p.name.split(' ')[0]}</span>
+                      <span className="hidden sm:inline">{p.name}</span>
+                      <span className="block text-base font-black text-teal-300 sm:text-lg">{usd(p.price)}</span>
                     </th>
                   ))}
                 </tr>
@@ -87,11 +88,11 @@ export default function PackagesPage() {
               <tbody className="divide-y divide-mist-200">
                 {compare.map((row) => (
                   <tr key={row.label} className="even:bg-mist-50">
-                    <th scope="row" className="px-5 py-3.5 font-medium text-navy-800">
+                    <th scope="row" className="px-3 py-3 font-medium leading-snug text-navy-800 sm:px-5 sm:py-3.5">
                       {row.label}
                     </th>
                     {packages.map((p) => (
-                      <td key={p.slug} className="px-5 py-3.5 text-center">
+                      <td key={p.slug} className="px-1 py-3 text-center sm:px-5 sm:py-3.5">
                         {row.in.includes(p.slug) ? (
                           <>
                             <Icon name="check" className="mx-auto h-5 w-5 text-teal-600" strokeWidth={3} />
@@ -113,7 +114,7 @@ export default function PackagesPage() {
       </section>
 
       {/* Add-ons */}
-      <section id="addons" className="bg-mist-50 py-24">
+      <section id="addons" className="bg-mist-50 py-16 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Add-Ons"
@@ -135,7 +136,7 @@ export default function PackagesPage() {
             <WhatYouNeed />
           </div>
           <p className="mt-10 text-center">
-            <Link href="/contact" className={button.dark}>
+            <Link href="/contact" className={`${button.dark} w-full sm:w-auto`}>
               Book with add-ons <Icon name="arrow" />
             </Link>
           </p>

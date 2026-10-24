@@ -46,14 +46,14 @@ export default async function FunnelPage({ params }: PageProps<'/lp/[slug]'>) {
       {/* Hero + form */}
       <section className="relative overflow-hidden bg-navy-900">
         <HeroBackdrop />
-        <Container className="relative grid items-start gap-12 py-14 sm:py-20 lg:grid-cols-[1fr_minmax(0,30rem)]">
+        <Container className="relative grid items-start gap-8 pb-10 pt-8 sm:gap-12 sm:py-20 lg:grid-cols-[1fr_minmax(0,30rem)]">
           <div className="lg:pt-8">
             <Eyebrow dark>{funnel.eyebrow}</Eyebrow>
-            <h1 className="mt-6 text-balance text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl">
+            <h1 className="mt-5 text-balance text-[2.25rem] font-black leading-[1.06] tracking-tight text-white sm:mt-6 sm:text-6xl">
               {funnel.headline} <span className="text-teal-300">{funnel.highlight}</span>
             </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-mist-200/85">{funnel.subhead}</p>
-            <ul className="mt-8 space-y-3">
+            <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-mist-200/85 sm:mt-6 sm:text-lg">{funnel.subhead}</p>
+            <ul className="mt-6 space-y-2.5 sm:mt-8 sm:space-y-3">
               {funnel.bullets.map((b) => (
                 <li key={b} className="flex items-center gap-3 text-base text-mist-100">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-400 text-navy-900">
@@ -68,7 +68,7 @@ export default async function FunnelPage({ params }: PageProps<'/lp/[slug]'>) {
             </div>
           </div>
 
-          <div id="book" className="scroll-mt-24 rounded-[2rem] bg-white p-6 shadow-2xl shadow-black/30 sm:p-8">
+          <div id="book" className="-mx-1 rounded-[1.75rem] bg-white p-5 shadow-2xl shadow-black/30 sm:mx-0 sm:rounded-[2rem] sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-700">
               {pkg ? `${pkg.name} · from ${usd(pkg.price)}` : 'Request your appointment'}
             </p>
@@ -85,12 +85,12 @@ export default async function FunnelPage({ params }: PageProps<'/lp/[slug]'>) {
       </section>
 
       {/* Pain points */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container>
           <SectionHeading title="Why people book us" />
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3 md:gap-6">
             {funnel.pains.map((p) => (
-              <div key={p.title} className="rounded-3xl bg-mist-50 p-8 ring-1 ring-mist-200">
+              <div key={p.title} className="rounded-3xl bg-mist-50 p-6 ring-1 ring-mist-200 sm:p-8">
                 <h3 className="text-lg font-bold text-navy-900">{p.title}</h3>
                 <p className="mt-2 leading-relaxed text-navy-600">{p.desc}</p>
               </div>
@@ -100,7 +100,7 @@ export default async function FunnelPage({ params }: PageProps<'/lp/[slug]'>) {
       </section>
 
       {/* How it works */}
-      <section className="bg-mist-50 py-20">
+      <section className="bg-mist-50 py-14 sm:py-20">
         <Container>
           <SectionHeading eyebrow="How It Works" title="Three steps to a spotless car" />
           <HowItWorks />
@@ -108,20 +108,20 @@ export default async function FunnelPage({ params }: PageProps<'/lp/[slug]'>) {
       </section>
 
       {/* Pricing recap */}
-      <section className="bg-navy-900 py-20">
+      <section className="bg-navy-900 py-14 sm:py-20">
         <Container className="max-w-4xl">
           <SectionHeading dark eyebrow="Pricing" title="Simple, upfront prices" />
-          <ul className="grid gap-4 sm:grid-cols-3">
+          <ul className="grid grid-cols-3 gap-2.5 sm:gap-4">
             {packages.map((p) => (
               <li
                 key={p.slug}
-                className={`rounded-3xl p-6 text-center ${
+                className={`rounded-2xl px-2 py-4 text-center sm:rounded-3xl sm:p-6 ${
                   p.slug === pkg?.slug ? 'bg-navy-700 ring-2 ring-teal-400' : 'bg-navy-800/60 ring-1 ring-white/10'
                 }`}
               >
-                <p className="font-semibold text-white">{p.name}</p>
-                <p className="mt-2 text-4xl font-black text-white">{usd(p.price)}</p>
-                <p className="mt-1 text-sm text-mist-200/75">{p.duration}</p>
+                <p className="text-sm font-semibold leading-tight text-white sm:text-base">{p.name}</p>
+                <p className="mt-2 text-2xl font-black text-white sm:text-4xl">{usd(p.price)}</p>
+                <p className="mt-1 text-xs text-mist-200/75 sm:text-sm">{p.duration}</p>
               </li>
             ))}
           </ul>
@@ -132,7 +132,7 @@ export default async function FunnelPage({ params }: PageProps<'/lp/[slug]'>) {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container className="max-w-4xl">
           <SectionHeading eyebrow="FAQ" title="Before you book" />
           <FaqList faqs={faqs} />
@@ -140,13 +140,13 @@ export default async function FunnelPage({ params }: PageProps<'/lp/[slug]'>) {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-teal-400 py-16">
+      <section className="bg-teal-400 py-12 sm:py-16">
         <Container className="text-center">
           <h2 className="text-balance text-3xl font-black tracking-tight text-navy-900 sm:text-4xl">
             Your car, detailed in your driveway.
           </h2>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <a href="#book" className={button.dark}>
+            <a href="#book" className={`${button.dark} w-full sm:w-auto`}>
               {funnel.ctaLabel} <Icon name="arrow" />
             </a>
             <a href={site.phone.href} className={`${button.outline} border-navy-900/25 bg-white/40 hover:bg-white/60`}>

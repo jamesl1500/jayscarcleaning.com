@@ -112,7 +112,7 @@ export default async function AreaPage({ params }: PageProps<'/service-areas/[ci
         }
         intro={area.blurb}
       >
-        <div className="flex shrink-0 flex-col gap-3 sm:flex-row md:flex-col">
+        <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row md:flex-col">
           <Link href={`/contact`} className={button.primary}>
             Book in {area.name} <Icon name="arrow" />
           </Link>
@@ -122,13 +122,13 @@ export default async function AreaPage({ params }: PageProps<'/service-areas/[ci
         </div>
       </PageHero>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container className="grid items-start gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-black tracking-tight text-navy-900">
+            <h2 className="text-2xl font-black tracking-tight text-navy-900 sm:text-3xl">
               Detailing built for {area.name} drivers
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-navy-600">{area.localNote}</p>
+            <p className="mt-4 text-base leading-relaxed text-navy-600 sm:mt-5 sm:text-lg">{area.localNote}</p>
             <ul className="mt-8 space-y-3">
               <CheckItem>Hand washed with the two-bucket method — never automatic brushes</CheckItem>
               <CheckItem>Weeknight and weekend appointments in {area.name}</CheckItem>
@@ -140,7 +140,7 @@ export default async function AreaPage({ params }: PageProps<'/service-areas/[ci
         </Container>
       </section>
 
-      <section className="bg-navy-900 py-20">
+      <section className="bg-navy-900 py-14 sm:py-20">
         <Container>
           <SectionHeading dark eyebrow={`${area.name} Pricing`} title={`Detailing packages in ${area.name}`} />
           <div className="grid grid-cols-1 gap-8 pt-4 md:grid-cols-3">
@@ -151,26 +151,26 @@ export default async function AreaPage({ params }: PageProps<'/service-areas/[ci
         </Container>
       </section>
 
-      <section className="bg-mist-50 py-20">
+      <section className="bg-mist-50 py-14 sm:py-20">
         <Container>
           <SectionHeading eyebrow="How It Works" title={`Getting your car detailed in ${area.name}`} />
           <HowItWorks />
         </Container>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container className="max-w-4xl">
           <SectionHeading eyebrow="FAQ" title={`${area.name} detailing questions`} />
           <FaqList faqs={faqs} />
         </Container>
       </section>
 
-      <section className="bg-mist-50 py-20">
+      <section className="bg-mist-50 py-14 sm:py-20">
         <Container>
           <SectionHeading eyebrow="Nearby" title={`Also serving near ${area.name}`} />
           <AreaGrid only={area.nearby} />
           <p className="mt-8 text-center">
-            <Link href="/service-areas" className="font-semibold text-teal-700 hover:underline underline-offset-4">
+            <Link href="/service-areas" className="inline-flex min-h-11 items-center font-semibold text-teal-700 hover:underline underline-offset-4">
               View all service areas →
             </Link>
           </p>

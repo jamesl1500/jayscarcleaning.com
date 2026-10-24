@@ -26,12 +26,51 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep anchor jumps and native form-validation scrolling clear of the
+     sticky header (top) and the mobile action bar (bottom). */
   scroll-padding-top: 5rem;
+  scroll-padding-bottom: 6rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   background: #ffffff;
   color: var(--color-navy-900);
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Instant press feedback on touch screens. */
+a,
+button,
+summary,
+label,
+select {
+  touch-action: manipulation;
+}
+@media (hover: none) {
+  a:active,
+  button:active,
+  summary:active {
+    opacity: 0.75;
+  }
+}
+
+/* iOS renders empty date inputs collapsed and centred. */
+input[type="date"] {
+  min-height: 3rem;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+/* Hide the fixed mobile action bar while the on-screen keyboard is in use so
+   it never covers the field being typed into. */
+body:has(input:not([type="checkbox"]):focus, select:focus, textarea:focus) .mobile-action-bar {
+  display: none;
 }
 
 ::selection {

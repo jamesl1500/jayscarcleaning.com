@@ -54,12 +54,17 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
         }
         intro={pkg.summary}
       >
-        <div className="shrink-0 rounded-3xl bg-navy-800/80 p-6 ring-1 ring-white/10 md:text-right">
-          <p className="text-6xl font-black tracking-tight text-white">{usd(pkg.price)}</p>
+        <div className="flex shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-4 rounded-3xl bg-navy-800/80 p-5 ring-1 ring-white/10 sm:p-6 md:block md:text-right">
+          <div>
+            <p className="text-5xl font-black tracking-tight text-white sm:text-6xl">{usd(pkg.price)}</p>
           <p className="mt-1 text-sm text-mist-200/75">Starting price</p>
           <p className="mt-1 flex items-center gap-1.5 text-sm text-mist-200/75 md:justify-end">
             <Icon name="clock" className="h-4 w-4" /> {pkg.duration}
           </p>
+          </div>
+          <Link href={`/contact?package=${pkg.slug}`} className={`${button.primary} w-full sm:w-auto md:mt-5 md:w-full`}>
+            Book {pkg.name}
+          </Link>
         </div>
       </PageHero>
 
@@ -70,10 +75,10 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
         </div>
       )}
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container className="grid gap-12 lg:grid-cols-5">
           <div className="lg:col-span-3">
-            <h2 className="text-3xl font-black tracking-tight text-navy-900">What&apos;s included</h2>
+            <h2 className="text-2xl font-black tracking-tight text-navy-900 sm:text-3xl">What&apos;s included</h2>
             <div className="mt-8 space-y-10">
               {pkg.included.map((group) => (
                 <div key={group.section ?? 'all'}>
@@ -100,7 +105,7 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
               ))}
             </div>
 
-            <div className="mt-14 rounded-3xl bg-mist-50 p-7 ring-1 ring-mist-200">
+            <div className="mt-10 rounded-3xl bg-mist-50 p-5 ring-1 ring-mist-200 sm:mt-14 sm:p-7">
               <h2 className="text-xl font-bold text-navy-900">Ideal for</h2>
               <ul className="mt-4 space-y-3">
                 {pkg.idealFor.map((i) => (
@@ -111,7 +116,7 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
           </div>
 
           <aside className="space-y-6 lg:col-span-2">
-            <div className="rounded-3xl bg-navy-900 p-8 lg:sticky lg:top-24">
+            <div className="rounded-3xl bg-navy-900 p-6 sm:p-8 lg:sticky lg:top-24">
               <h2 className="text-xl font-bold text-white">Package summary</h2>
               <dl className="mt-6 space-y-4 text-sm">
                 {[
@@ -142,7 +147,7 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
         </Container>
       </section>
 
-      <section className="bg-mist-50 py-20">
+      <section className="bg-mist-50 py-14 sm:py-20">
         <Container>
           <SectionHeading eyebrow="Recommended Add-Ons" title={`Upgrade your ${pkg.name}`} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -159,14 +164,14 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
         </Container>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container className="max-w-4xl">
           <SectionHeading eyebrow="FAQ" title={`${pkg.name} questions`} />
           <FaqList faqs={pkg.faqs} />
         </Container>
       </section>
 
-      <section className="bg-mist-50 py-20">
+      <section className="bg-mist-50 py-14 sm:py-20">
         <Container>
           <SectionHeading
             eyebrow="Where We Work"
@@ -174,12 +179,12 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
             intro="We bring this package to driveways across Sheffield Lake and the surrounding communities."
           />
           <AreaGrid />
-          <div className="mt-14 grid gap-5 sm:grid-cols-2">
+          <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5">
             {others.map((p) => (
               <Link
                 key={p.slug}
                 href={`/packages/${p.slug}`}
-                className="group flex items-center justify-between rounded-3xl bg-navy-900 p-6 transition hover:bg-navy-800"
+                className="group flex items-center justify-between rounded-3xl bg-navy-900 p-5 transition hover:bg-navy-800 sm:p-6"
               >
                 <span>
                   <span className="block text-xs uppercase tracking-wider text-teal-300">Also available</span>

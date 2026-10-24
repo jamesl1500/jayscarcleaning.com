@@ -33,7 +33,7 @@ export default async function ContactPage({ searchParams }: PageProps<'/contact'
         intro={
           <>
             Tell us about your car and where it&apos;s parked. We&apos;ll confirm within 24 hours — or call us now at{' '}
-            <a href={site.phone.href} className="font-semibold text-teal-300 underline-offset-4 hover:underline">
+            <a href={site.phone.href} className="-my-3 inline-block py-3 font-semibold text-teal-300 underline-offset-4 hover:underline">
               {site.phone.display}
             </a>
             .
@@ -42,12 +42,12 @@ export default async function ContactPage({ searchParams }: PageProps<'/contact'
         breadcrumbs={crumbs}
       />
 
-      <section className="bg-mist-50 py-16 sm:py-20">
+      <section className="bg-mist-50 pb-12 pt-4 sm:py-20">
         <Container>
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-10">
             <div className="lg:col-span-2">
-              <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-mist-200 sm:p-10">
-                <h2 className="mb-8 text-2xl font-black text-navy-900">Request an appointment</h2>
+              <div id="form" className="relative -mx-1 -mt-10 rounded-3xl bg-white p-5 shadow-lg ring-1 ring-mist-200 sm:mx-0 sm:mt-0 sm:p-10 sm:shadow-sm">
+                <h2 className="mb-6 text-2xl font-black text-navy-900 sm:mb-8">Request an appointment</h2>
                 <BookingForm initialPackage={initialPackage} source="contact" />
               </div>
             </div>
@@ -59,7 +59,7 @@ export default async function ContactPage({ searchParams }: PageProps<'/contact'
                 <h2 className="text-xl font-bold text-white">Get in touch</h2>
                 <ul className="mt-5 space-y-5 text-sm">
                   <li>
-                    <a href={site.phone.href} className="flex items-center gap-3 group">
+                    <a href={site.phone.href} className="group flex min-h-12 items-center gap-3">
                       <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-400/15 text-teal-300">
                         <Icon name="phone" className="h-5 w-5" />
                       </span>
@@ -70,7 +70,7 @@ export default async function ContactPage({ searchParams }: PageProps<'/contact'
                     </a>
                   </li>
                   <li>
-                    <a href={site.email.href} className="flex items-center gap-3 group">
+                    <a href={site.email.href} className="group flex min-h-12 items-center gap-3">
                       <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-400/15 text-teal-300">
                         <Icon name="mail" className="h-5 w-5" />
                       </span>

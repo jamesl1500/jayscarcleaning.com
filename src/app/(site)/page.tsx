@@ -50,19 +50,21 @@ export default function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy-900">
         <HeroBackdrop />
-        <Container className="relative grid items-center gap-14 py-20 sm:py-24 lg:grid-cols-[1.15fr_1fr] lg:py-28">
+        <Container className="relative grid items-center gap-10 py-10 sm:gap-14 sm:py-24 lg:grid-cols-[1.15fr_1fr] lg:py-28">
           <div>
             <Eyebrow dark>
-              <Icon name="pin" className="h-3.5 w-3.5" /> Mobile Detailing · {site.region.city}, OH
+              <Icon name="pin" className="h-3.5 w-3.5" />
+              <span className="hidden min-[400px]:inline">Mobile Detailing · </span>
+              {site.region.city}, OH
             </Eyebrow>
-            <h1 className="mt-6 text-balance text-5xl font-black leading-[1.03] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 text-balance text-[2.5rem] font-black leading-[1.04] tracking-tight text-white sm:mt-6 sm:text-6xl lg:text-7xl">
               Mobile car detailing in <span className="text-teal-300">Sheffield Lake</span>, done in your driveway.
             </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-mist-200/85 sm:text-xl">
+            <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-mist-200/85 sm:mt-6 sm:text-xl">
               Hand washes, deep interior cleans and full details for Sheffield Lake, Avon Lake, Lorain and the rest of
               Lorain County. You provide water and an outlet — we bring everything else.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
               <Link href="/contact" className={`${button.primary} text-lg`}>
                 Book Your Detail <Icon name="arrow" />
               </Link>
@@ -70,7 +72,7 @@ export default function Home() {
                 <Icon name="phone" /> {site.phone.display}
               </a>
             </div>
-            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-mist-200/85">
+            <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2.5 text-sm text-mist-200/85 sm:mt-10 sm:gap-x-6">
               {['Packages from $50', 'Hand wash only', 'Confirmed within 24 hours'].map((t) => (
                 <li key={t} className="flex items-center gap-2">
                   <Icon name="check" className="h-4 w-4 text-teal-300" strokeWidth={3} /> {t}
@@ -79,17 +81,17 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="rounded-[2rem] bg-navy-800/80 p-7 ring-1 ring-white/10 backdrop-blur sm:p-9">
+          <div className="rounded-[2rem] bg-navy-800/80 p-6 ring-1 ring-white/10 backdrop-blur sm:p-9">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-300">Simple pricing</p>
             <ul className="mt-5 divide-y divide-white/10">
               {packages.map((p) => (
                 <li key={p.slug}>
-                  <Link href={`/packages/${p.slug}`} className="group flex items-center justify-between gap-4 py-4">
+                  <Link href={`/packages/${p.slug}`} className="group flex min-h-16 items-center justify-between gap-4 py-3.5 sm:py-4">
                     <span>
                       <span className="block font-semibold text-white group-hover:text-teal-300">
                         {p.name}
                         {p.featured && (
-                          <span className="ml-2 rounded-full bg-teal-400 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-navy-900">
+                          <span className="ml-2 inline-block rounded-full bg-teal-400 px-2 py-0.5 align-middle text-xs font-bold uppercase tracking-wide text-navy-900">
                             Popular
                           </span>
                         )}
@@ -113,7 +115,7 @@ export default function Home() {
 
       {/* Stats */}
       <section className="border-y border-teal-500/20 bg-navy-950">
-        <Container className="grid grid-cols-2 gap-8 py-10 text-center md:grid-cols-4">
+        <Container className="grid grid-cols-2 gap-x-4 gap-y-6 py-8 text-center sm:gap-8 sm:py-10 md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label}>
               <p className="text-3xl font-black text-teal-300">{s.value}</p>
@@ -124,7 +126,7 @@ export default function Home() {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="bg-mist-50 py-24">
+      <section id="how-it-works" className="bg-mist-50 py-16 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="How It Works"
@@ -139,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* Packages */}
-      <section id="packages" className="bg-navy-900 py-24">
+      <section id="packages" className="bg-navy-900 py-16 sm:py-24">
         <Container>
           <SectionHeading
             dark
@@ -153,7 +155,7 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-10 text-center">
-            <Link href="/packages" className="font-medium text-teal-300 hover:text-teal-200">
+            <Link href="/packages" className="inline-flex min-h-11 items-center font-medium text-teal-300 hover:text-teal-200">
               Compare packages &amp; all add-ons →
             </Link>
           </p>
@@ -161,8 +163,8 @@ export default function Home() {
       </section>
 
       {/* Why us + add-ons */}
-      <section className="bg-white py-24">
-        <Container className="grid items-start gap-16 lg:grid-cols-2">
+      <section className="bg-white py-16 sm:py-24">
+        <Container className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
               center={false}
@@ -174,7 +176,7 @@ export default function Home() {
               }
               intro="We're not a drive-through car wash. We're a mobile detailing service that brings professional products and techniques straight to your driveway."
             />
-            <ul className="grid gap-6 sm:grid-cols-2">
+            <ul className="grid gap-x-6 gap-y-7 sm:grid-cols-2">
               {reasons.map((r) => (
                 <li key={r.title}>
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-500/15 text-teal-700">
@@ -187,7 +189,7 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="rounded-[2rem] bg-navy-900 p-8 sm:p-10">
+          <div className="rounded-[2rem] bg-navy-900 p-6 sm:p-10">
             <h2 className="text-2xl font-bold text-white">Premium add-ons</h2>
             <p className="mt-2 text-sm text-mist-200/75">Customize any package with à la carte upgrades.</p>
             <ul className="mt-6 divide-y divide-white/10">
@@ -206,7 +208,7 @@ export default function Home() {
       </section>
 
       {/* Service areas */}
-      <section id="service-areas" className="bg-mist-50 py-24">
+      <section id="service-areas" className="bg-mist-50 py-16 sm:py-24">
         <Container>
           <SectionHeading
             eyebrow="Service Areas"
@@ -218,7 +220,7 @@ export default function Home() {
           <AreaGrid />
           <p className="mt-8 text-center text-sm text-navy-600">
             Don&apos;t see your town?{' '}
-            <a href={site.phone.href} className="font-semibold text-teal-700 underline-offset-4 hover:underline">
+            <a href={site.phone.href} className="-my-3 inline-block py-3 font-semibold text-teal-700 underline-offset-4 hover:underline">
               Call {site.phone.display}
             </a>{' '}
             — we may still be able to come to you.
@@ -227,22 +229,22 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="bg-navy-900 py-24">
-        <Container className="grid items-center gap-14 lg:grid-cols-2">
+      <section id="about" className="bg-navy-900 py-16 sm:py-24">
+        <Container className="grid items-center gap-10 sm:gap-14 lg:grid-cols-2">
           <div className="flex justify-center lg:justify-end">
-            <div className="relative h-80 w-72 overflow-hidden rounded-[2rem] shadow-2xl ring-4 ring-teal-400/30 sm:h-96 sm:w-80 lg:h-[28rem] lg:w-96">
+            <div className="relative h-72 w-64 overflow-hidden rounded-[2rem] shadow-2xl ring-4 ring-teal-400/30 sm:h-96 sm:w-80 lg:h-[28rem] lg:w-96">
               <Image
                 src="/james-latten-clean-lab-detailing-owner.jpg"
                 alt={`${site.owner}, owner and lead detailer at ${site.name} in Sheffield Lake, Ohio`}
                 fill
                 className="object-cover object-top"
-                sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
+                sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
               />
             </div>
           </div>
           <div>
             <Eyebrow dark>Meet the Owner</Eyebrow>
-            <h2 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">
+            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-5xl">
               Hi, I&apos;m <span className="text-teal-300">James</span>.
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-mist-200/85">
@@ -259,7 +261,7 @@ export default function Home() {
               <CheckItem dark>Every car detailed by hand</CheckItem>
               <CheckItem dark>Direct line to the owner: {site.phone.display}</CheckItem>
             </ul>
-            <Link href="/contact" className={`${button.primary} mt-10`}>
+            <Link href="/contact" className={`${button.primary} mt-8 w-full sm:mt-10 sm:w-auto`}>
               Book with James <Icon name="arrow" />
             </Link>
           </div>
@@ -267,7 +269,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="bg-white py-24">
+      <section id="faq" className="bg-white py-16 sm:py-24">
         <Container className="max-w-4xl">
           <SectionHeading eyebrow="FAQ" title="Questions, answered" />
           <FaqList faqs={generalFaqs} />

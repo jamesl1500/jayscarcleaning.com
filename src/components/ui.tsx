@@ -30,7 +30,7 @@ export function Icon({ name, className = 'w-5 h-5', strokeWidth = 2 }: { name: I
 }
 
 const buttonBase =
-  'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400';
+  'inline-flex min-h-12 items-center justify-center gap-2 rounded-full text-center font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400';
 
 export const button = {
   primary: `${buttonBase} bg-teal-400 text-navy-900 hover:bg-teal-300 px-7 py-3.5`,
@@ -67,15 +67,15 @@ export function SectionHeading({
   as?: 'h1' | 'h2';
 }) {
   return (
-    <div className={`mb-14 ${center ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'}`}>
+    <div className={`mb-10 sm:mb-14 ${center ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'}`}>
       {eyebrow && <Eyebrow dark={dark}>{eyebrow}</Eyebrow>}
       <Tag
-        className={`mt-5 text-balance text-4xl font-black tracking-tight sm:text-5xl ${dark ? 'text-white' : 'text-navy-900'}`}
+        className={`mt-4 text-balance text-3xl font-black tracking-tight sm:mt-5 sm:text-5xl ${dark ? 'text-white' : 'text-navy-900'}`}
       >
         {title}
       </Tag>
       {intro && (
-        <p className={`mt-5 text-pretty text-lg leading-relaxed ${dark ? 'text-mist-200/80' : 'text-navy-600'}`}>{intro}</p>
+        <p className={`mt-4 text-pretty text-base leading-relaxed sm:mt-5 sm:text-lg ${dark ? 'text-mist-200/80' : 'text-navy-600'}`}>{intro}</p>
       )}
     </div>
   );
@@ -102,19 +102,19 @@ export function CheckItem({ children, dark = false }: { children: React.ReactNod
 
 export function Breadcrumbs({ items }: { items: { name: string; path: string }[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-8">
-      <ol className="flex flex-wrap items-center gap-1.5 text-sm text-mist-200/70">
+    <nav aria-label="Breadcrumb" className="-my-2 mb-4 sm:mb-6">
+      <ol className="flex flex-wrap items-center gap-x-1.5 text-sm text-mist-200/70">
         {items.map((item, i) => {
           const last = i === items.length - 1;
           return (
             <li key={item.path} className="flex items-center gap-1.5">
               {last ? (
-                <span aria-current="page" className="text-teal-300">
+                <span aria-current="page" className="inline-flex min-h-11 items-center text-teal-300">
                   {item.name}
                 </span>
               ) : (
                 <>
-                  <Link href={item.path} className="hover:text-white transition-colors">
+                  <Link href={item.path} className="inline-flex min-h-11 min-w-11 items-center hover:text-white transition-colors">
                     {item.name}
                   </Link>
                   <span aria-hidden="true">/</span>
@@ -142,15 +142,19 @@ export function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-navy-900 pb-20 pt-14 sm:pt-16">
+    <section className="relative overflow-hidden bg-navy-900 pb-14 pt-8 sm:pb-20 sm:pt-16">
       <HeroBackdrop />
       <Container className="relative">
         {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
-        <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-10">
           <div className="max-w-3xl">
             {eyebrow && <Eyebrow dark>{eyebrow}</Eyebrow>}
-            <h1 className="mt-5 text-balance text-4xl font-black tracking-tight text-white sm:text-6xl">{title}</h1>
-            {intro && <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-mist-200/80">{intro}</p>}
+            <h1 className="mt-4 text-balance text-[2.125rem] font-black leading-[1.08] tracking-tight text-white sm:mt-5 sm:text-6xl">
+              {title}
+            </h1>
+            {intro && (
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-mist-200/80 sm:mt-5 sm:text-lg">{intro}</p>
+            )}
           </div>
           {children}
         </div>
@@ -182,16 +186,16 @@ export function FaqList({ faqs, dark = false }: { faqs: Faq[]; dark?: boolean })
   return (
     <div className={`divide-y rounded-3xl border ${dark ? 'divide-white/10 border-white/10' : 'divide-mist-200 border-mist-200 bg-white'}`}>
       {faqs.map((faq) => (
-        <details key={faq.q} className="group px-6 py-5 sm:px-8">
+        <details key={faq.q} className="group">
           <summary
-            className={`flex cursor-pointer items-center justify-between gap-6 text-left font-semibold ${
+            className={`flex min-h-16 cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left font-semibold sm:gap-6 sm:px-8 sm:py-5 ${
               dark ? 'text-white' : 'text-navy-900'
             }`}
           >
             <h3 className="text-base sm:text-lg">{faq.q}</h3>
             <Icon name="chevron" className="h-5 w-5 shrink-0 text-teal-500 transition-transform group-open:rotate-180" />
           </summary>
-          <p className={`mt-3 leading-relaxed ${dark ? 'text-mist-200/80' : 'text-navy-600'}`}>{faq.a}</p>
+          <p className={`px-5 pb-5 leading-relaxed sm:px-8 ${dark ? 'text-mist-200/80' : 'text-navy-600'}`}>{faq.a}</p>
         </details>
       ))}
     </div>
@@ -202,7 +206,7 @@ export function PackageCard({ pkg, headingLevel = 'h3' }: { pkg: Package; headin
   const Heading = headingLevel;
   return (
     <article
-      className={`relative flex flex-col rounded-3xl p-8 transition-transform hover:-translate-y-1 ${
+      className={`relative flex flex-col rounded-3xl p-6 transition-transform sm:p-8 md:hover:-translate-y-1 ${
         pkg.featured
           ? 'bg-gradient-to-b from-navy-700 to-navy-800 ring-2 ring-teal-400 shadow-2xl shadow-teal-500/10'
           : 'bg-navy-800/60 ring-1 ring-white/10'
@@ -236,7 +240,7 @@ export function PackageCard({ pkg, headingLevel = 'h3' }: { pkg: Package; headin
         </Link>
         <Link
           href={`/packages/${pkg.slug}`}
-          className="text-center text-sm font-medium text-teal-300 hover:text-teal-200 transition-colors"
+          className="inline-flex min-h-11 items-center justify-center gap-1 text-sm font-medium text-teal-300 hover:text-teal-200 transition-colors"
         >
           See everything included<span className="sr-only"> in the {pkg.name}</span> →
         </Link>
@@ -253,15 +257,15 @@ export function CtaBanner({
   text?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-teal-400 py-20">
+    <section className="relative overflow-hidden bg-teal-400 py-14 sm:py-20">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-white/30 blur-3xl"
       />
       <Container className="relative text-center">
-        <h2 className="text-balance text-4xl font-black tracking-tight text-navy-900 sm:text-5xl">{title}</h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-navy-800">{text}</p>
-        <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+        <h2 className="text-balance text-3xl font-black tracking-tight text-navy-900 sm:text-5xl">{title}</h2>
+        <p className="mx-auto mt-4 max-w-xl text-base text-navy-800 sm:text-lg">{text}</p>
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
           <Link href="/contact" className={button.dark}>
             Book Your Detail <Icon name="arrow" />
           </Link>
@@ -278,7 +282,7 @@ export function CtaBanner({
 export function WhatYouNeed({ dark = false, compact = false }: { dark?: boolean; compact?: boolean }) {
   return (
     <div
-      className={`rounded-3xl p-6 sm:p-8 ${
+      className={`rounded-3xl p-5 sm:p-8 ${
         dark ? 'bg-navy-800/70 ring-1 ring-teal-400/30' : 'bg-teal-500/5 ring-1 ring-teal-600/20'
       }`}
     >
@@ -340,26 +344,28 @@ export const steps = [
 
 export function HowItWorks({ dark = false }: { dark?: boolean }) {
   return (
-    <ol className="grid gap-6 md:grid-cols-3">
+    <ol className="grid gap-4 md:grid-cols-3 md:gap-6">
       {steps.map((step, i) => (
         <li
           key={step.title}
-          className={`relative rounded-3xl p-8 ${dark ? 'bg-navy-800/60 ring-1 ring-white/10' : 'bg-white ring-1 ring-mist-200'}`}
+          className={`relative flex gap-4 rounded-3xl p-5 sm:p-8 md:block ${dark ? 'bg-navy-800/60 ring-1 ring-white/10' : 'bg-white ring-1 ring-mist-200'}`}
         >
           <span
-            className={`absolute right-6 top-5 text-5xl font-black ${dark ? 'text-white/9' : 'text-navy-900/5'}`}
+            className={`absolute right-5 top-4 text-4xl font-black sm:right-6 sm:top-5 sm:text-5xl ${dark ? 'text-white/9' : 'text-navy-900/5'}`}
             aria-hidden="true"
           >
             0{i + 1}
           </span>
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-400 text-navy-900">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-teal-400 text-navy-900">
             <Icon name={step.icon} className="h-6 w-6" />
           </span>
-          <h3 className={`mt-6 text-lg font-bold ${dark ? 'text-white' : 'text-navy-900'}`}>
-            <span className="sr-only">Step {i + 1}: </span>
-            {step.title}
-          </h3>
-          <p className={`mt-2 text-sm leading-relaxed ${dark ? 'text-mist-200/75' : 'text-navy-600'}`}>{step.desc}</p>
+          <div className="md:mt-6">
+            <h3 className={`pr-10 text-lg font-bold md:pr-0 ${dark ? 'text-white' : 'text-navy-900'}`}>
+              <span className="sr-only">Step {i + 1}: </span>
+              {step.title}
+            </h3>
+            <p className={`mt-1.5 text-sm leading-relaxed md:mt-2 ${dark ? 'text-mist-200/75' : 'text-navy-600'}`}>{step.desc}</p>
+          </div>
         </li>
       ))}
     </ol>
@@ -369,12 +375,12 @@ export function HowItWorks({ dark = false }: { dark?: boolean }) {
 export function AreaGrid({ exclude, only }: { exclude?: string; only?: string[] }) {
   const list = serviceAreas.filter((a) => a.slug !== exclude && (!only || only.includes(a.slug)));
   return (
-    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+    <ul className="grid grid-cols-1 gap-2.5 min-[400px]:grid-cols-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4">
       {list.map((a) => (
         <li key={a.slug}>
           <Link
             href={`/service-areas/${a.slug}`}
-            className="group flex items-center justify-between gap-2 rounded-2xl bg-white px-5 py-4 ring-1 ring-mist-200 transition hover:ring-teal-500"
+            className="group flex min-h-16 items-center justify-between gap-2 rounded-2xl bg-white px-4 py-3 ring-1 ring-mist-200 transition hover:ring-teal-500 sm:px-5 sm:py-4"
           >
             <span>
               <span className="block font-semibold text-navy-900 group-hover:text-teal-700">{a.name}</span>

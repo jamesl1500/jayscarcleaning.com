@@ -51,6 +51,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  // Lets the fixed mobile bar sit above the iPhone home indicator via
+  // env(safe-area-inset-bottom). Pinch-zoom stays enabled for accessibility.
+  viewportFit: 'cover',
   themeColor: '#0a2230',
   colorScheme: 'light',
 };

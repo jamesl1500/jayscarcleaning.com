@@ -6,10 +6,10 @@ import { Icon } from './ui';
 export default function Footer() {
   return (
     <footer className="bg-navy-950 text-mist-200/70">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Link href="/" className="flex items-center gap-2.5">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-12">
+          <div className="col-span-2 lg:col-span-1">
+            <Link href="/" className="flex min-h-11 items-center gap-2.5">
               <Image src="/logo-mark.svg" alt="" width={36} height={36} />
               <span className="text-base font-bold text-white">{site.name}</span>
             </Link>
@@ -17,16 +17,16 @@ export default function Footer() {
               Professional mobile car detailing based in Sheffield Lake, Ohio, serving Lorain County and nearby
               communities. Hand washes, interior details and full details — right in your driveway.
             </p>
-            <address className="mt-6 space-y-3 text-sm not-italic">
-              <a href={site.phone.href} className="flex items-center gap-2.5 text-white hover:text-teal-300 transition-colors">
+            <address className="mt-5 text-sm not-italic">
+              <a href={site.phone.href} className="flex min-h-11 items-center gap-2.5 text-white hover:text-teal-300 transition-colors">
                 <Icon name="phone" className="h-4 w-4 text-teal-400" />
                 {site.phone.display}
               </a>
-              <a href={site.email.href} className="flex items-center gap-2.5 text-white hover:text-teal-300 transition-colors">
+              <a href={site.email.href} className="flex min-h-11 items-center gap-2.5 text-white hover:text-teal-300 transition-colors">
                 <Icon name="mail" className="h-4 w-4 text-teal-400" />
                 {site.email.display}
               </a>
-              <p className="flex items-center gap-2.5">
+              <p className="flex min-h-11 items-center gap-2.5">
                 <Icon name="pin" className="h-4 w-4 text-teal-400" />
                 Mobile service · {site.region.city}, {site.region.state}
               </p>
@@ -35,21 +35,21 @@ export default function Footer() {
 
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wider text-white">Packages</h2>
-            <ul className="mt-4 space-y-2.5 text-sm">
+            <ul className="mt-2 text-sm">
               {packages.map((p) => (
                 <li key={p.slug}>
-                  <Link href={`/packages/${p.slug}`} className="hover:text-teal-300 transition-colors">
+                  <Link href={`/packages/${p.slug}`} className="inline-flex min-h-11 min-w-11 items-center hover:text-teal-300 transition-colors">
                     {p.name} — {usd(p.price)}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/packages#addons" className="hover:text-teal-300 transition-colors">
+                <Link href="/packages#addons" className="inline-flex min-h-11 min-w-11 items-center hover:text-teal-300 transition-colors">
                   Add-On Services
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-teal-300 transition-colors">
+                <Link href="/contact" className="inline-flex min-h-11 min-w-11 items-center hover:text-teal-300 transition-colors">
                   Book a Detail
                 </Link>
               </li>
@@ -58,10 +58,10 @@ export default function Footer() {
 
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wider text-white">Service Areas</h2>
-            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm lg:grid-cols-1">
+            <ul className="mt-2 text-sm">
               {serviceAreas.map((a) => (
                 <li key={a.slug}>
-                  <Link href={`/service-areas/${a.slug}`} className="hover:text-teal-300 transition-colors">
+                  <Link href={`/service-areas/${a.slug}`} className="inline-flex min-h-11 min-w-11 items-center hover:text-teal-300 transition-colors">
                     {a.name}
                   </Link>
                 </li>
@@ -69,7 +69,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-white">Hours</h2>
             <dl className="mt-4 space-y-3 text-sm">
               {hours.map((h) => (
@@ -81,14 +81,14 @@ export default function Footer() {
             </dl>
             <Link
               href="/contact"
-              className="mt-6 inline-flex rounded-full bg-teal-400 px-5 py-2.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-teal-300"
+              className="mt-6 inline-flex min-h-12 items-center rounded-full bg-teal-400 px-6 text-sm font-semibold text-navy-900 transition-colors hover:bg-teal-300"
             >
               Book Online
             </Link>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-1 border-t border-white/10 pt-6 text-center text-xs sm:flex-row sm:gap-3">
           <p>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
@@ -98,7 +98,7 @@ export default function Footer() {
               href="https://www.foundryframe.com"
               target="_blank"
               rel="noopener"
-              className="text-mist-200 hover:text-teal-300 transition-colors"
+              className="inline-flex min-h-11 items-center text-mist-200 hover:text-teal-300 transition-colors"
             >
               Foundry Frame
             </a>

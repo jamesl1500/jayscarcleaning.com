@@ -22,14 +22,14 @@ export default async function ThankYouPage({ searchParams }: PageProps<'/thank-y
           <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal-400 text-navy-900">
             <Icon name="check" className="h-8 w-8" strokeWidth={3} />
           </span>
-          <h1 className="mt-8 text-4xl font-black tracking-tight text-white sm:text-5xl">You&apos;re on the schedule!</h1>
-          <p className="mt-5 text-lg leading-relaxed text-mist-200/85">
+          <h1 className="mt-6 text-3xl font-black tracking-tight text-white sm:mt-8 sm:text-5xl">You&apos;re on the schedule!</h1>
+          <p className="mt-4 text-base leading-relaxed text-mist-200/85 sm:mt-5 sm:text-lg">
             We received your {pkg ? <strong className="text-white">{pkg.name}</strong> : 'booking'}&nbsp;request and sent a
             confirmation to your email. We&apos;ll reach out within 24 hours to lock in your time.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 max-w-2xl">
+        <div className="mx-auto mt-10 max-w-2xl sm:mt-12">
           <WhatYouNeed dark />
         </div>
 
