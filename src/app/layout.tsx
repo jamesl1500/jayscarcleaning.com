@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist } from 'next/font/google';
-import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
+import GoogleTag from '@/components/GoogleTag';
 import JsonLd from '@/components/JsonLd';
 import PhoneClickTracker from '@/components/PhoneClickTracker';
 import { site } from '@/lib/site';
@@ -75,8 +75,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <JsonLd data={siteGraph()} />
         {children}
         <PhoneClickTracker />
+        <GoogleTag />
       </body>
-      <GoogleAnalytics gaId={site.gaId} />
     </html>
   );
 }

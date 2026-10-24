@@ -29,8 +29,17 @@ export const site = {
   geo: { latitude: 41.4876, longitude: -82.1013 },
   priceRange: '$50–$120',
   lastUpdated: '2026-10-24',
-  // Google Analytics 4 measurement ID (Google tag / gtag.js).
+  // Google tag (gtag.js) IDs. One script load configures both.
   gaId: 'G-BCQHR9YP2N',
+  adsId: 'AW-18488043490',
+  // Google Ads conversion labels — the part after the slash in a conversion's
+  // `send_to` value ("AW-18488043490/<label>"), found in Google Ads under
+  // Goals → Conversions → [conversion] → Tag setup. A conversion only fires
+  // once its label is filled in.
+  adsConversionLabels: {
+    booking: '',
+    call: '',
+  },
 } as const;
 
 // What the customer needs to provide. Shown on every service, area and funnel
