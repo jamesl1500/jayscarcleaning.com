@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { sendGAEvent } from '@next/third-parties/google';
 import { addons, packages, serviceAreas, usd } from '@/lib/site';
 
 const vehicleTypes = ['Sedan', 'SUV / Crossover', 'Truck', 'Van / Minivan', 'Sports Car / Coupe', 'Convertible', 'Other'];
@@ -85,6 +86,13 @@ export default function BookingForm({
         throw new Error(data.error || 'Something went wrong. Please try again or give us a call.');
       }
 
+      sendGAEvent('event', 'generate_lead', {
+        currency: 'USD',
+        value: (selectedPkg?.price ?? 0) + addonTotal,
+        package: form.pkg,
+        city: form.city,
+        lead_source: source,
+      });
       router.push(`/thank-you?package=${form.pkg}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again or give us a call.');

@@ -29,6 +29,8 @@ export const site = {
   geo: { latitude: 41.4876, longitude: -82.1013 },
   priceRange: '$50–$120',
   lastUpdated: '2026-10-24',
+  // Google Analytics 4 measurement ID (Google tag / gtag.js).
+  gaId: 'G-BCQHR9YP2N',
 } as const;
 
 // What the customer needs to provide. Shown on every service, area and funnel
