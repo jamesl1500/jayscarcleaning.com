@@ -10,6 +10,7 @@ import { Icon } from './ui';
 const links = [
   { href: '/packages', label: 'Packages & Pricing' },
   { href: '/service-areas', label: 'Service Areas' },
+  { href: '/gift-cards', label: 'Gift Cards' },
   { href: '/#how-it-works', label: 'How It Works' },
   { href: '/#faq', label: 'FAQ' },
 ];
@@ -36,7 +37,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-7 lg:flex">
+        <div className="hidden items-center gap-5 lg:flex xl:gap-7">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -52,7 +53,11 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-4 md:flex">
-          <a href={site.phone.href} className="flex items-center gap-2 text-sm font-semibold text-white hover:text-teal-300 transition-colors">
+          {/* Hidden from lg to xl, where the five nav links need the room. */}
+          <a
+            href={site.phone.href}
+            className="flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-teal-300 lg:hidden xl:flex"
+          >
             <Icon name="phone" className="h-4 w-4 text-teal-300" />
             {site.phone.display}
           </a>

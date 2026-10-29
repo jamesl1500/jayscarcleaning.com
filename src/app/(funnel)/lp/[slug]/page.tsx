@@ -121,12 +121,13 @@ export default async function FunnelPage({ params }: PageProps<'/lp/[slug]'>) {
               >
                 <p className="text-sm font-semibold leading-tight text-white sm:text-base">{p.name}</p>
                 <p className="mt-2 text-2xl font-black text-white sm:text-4xl">{usd(p.price)}</p>
+                <p className="text-xs text-mist-200/75">sedan</p>
                 <p className="mt-1 text-xs text-mist-200/75 sm:text-sm">{p.duration}</p>
               </li>
             ))}
           </ul>
           <p className="mt-6 text-center text-sm text-mist-200/75">
-            Starting prices · add-ons from $20 · serving {areaNames(serviceAreas.slice(0, 6))} &amp; more
+            SUVs &amp; trucks a little more · add-ons from $20 · serving {areaNames(serviceAreas.slice(0, 6))} &amp; more
           </p>
         </Container>
       </section>

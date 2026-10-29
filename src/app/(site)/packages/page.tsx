@@ -1,6 +1,20 @@
 import Link from 'next/link';
 import JsonLd from '@/components/JsonLd';
-import { button, Container, CtaBanner, Icon, PackageCard, PageHero, SectionHeading, WhatYouNeed } from '@/components/ui';
+import {
+  button,
+  Container,
+  CtaBanner,
+  Icon,
+  LaunchBadge,
+  PackageCard,
+  PageHero,
+  PlanAndGiftCards,
+  SectionHeading,
+  Testimonials,
+  TierTable,
+  WhatYouNeed,
+  WinterServices,
+} from '@/components/ui';
 import { pageMetadata } from '@/lib/metadata';
 import { breadcrumbSchema, graph, serviceSchema } from '@/lib/schema';
 import { addons, packages, site, usd } from '@/lib/site';
@@ -8,7 +22,7 @@ import { addons, packages, site, usd } from '@/lib/site';
 export const metadata = pageMetadata({
   title: 'Car Detailing Packages & Prices — Sheffield Lake, OH',
   description:
-    'Mobile car detailing prices in Sheffield Lake & Lorain County: Exterior Wash $50, Interior Detail $75, Full Detail $120, plus add-ons like ceramic spray and pet hair removal.',
+    'Mobile car detailing prices in Sheffield Lake & Lorain County by vehicle size: Full Detail from $120, Interior Detail from $75, Exterior Wash from $50, plus add-ons and maintenance plans.',
   path: '/packages',
 });
 
@@ -51,7 +65,7 @@ export default function PackagesPage() {
             Mobile detailing <span className="text-teal-300">packages</span>
           </>
         }
-        intro={`Transparent starting prices for Sheffield Lake and Lorain County. Every package is done by hand at your location — call ${site.phone.display} with questions.`}
+        intro={`Clear prices by vehicle size for Sheffield Lake and Lorain County. Every package is done by hand at your location — call ${site.phone.display} with questions.`}
       />
 
       <section className="bg-navy-900 pb-24 pt-8">
@@ -61,6 +75,27 @@ export default function PackagesPage() {
               <PackageCard key={pkg.slug} pkg={pkg} headingLevel="h2" />
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* Size tiers */}
+      <section id="pricing" className="bg-mist-50 py-16 sm:py-24">
+        <Container className="max-w-5xl">
+          <SectionHeading
+            eyebrow="Pricing by Vehicle Size"
+            title="Bigger vehicle, a little more time"
+            intro="A 3-row SUV takes a lot longer than a coupe, so prices step up with size. We confirm your price before we start."
+          />
+          <TierTable
+            caption="Package prices by vehicle size"
+            rows={packages.map((p) => ({ name: p.name, prices: p.prices, note: p.duration, href: `/packages/${p.slug}` }))}
+          />
+          <p className="mt-5 flex flex-wrap items-center justify-center gap-2 text-center text-sm text-navy-600">
+            <LaunchBadge dark={false} />
+            {site.launchPricing
+              ? 'These are introductory prices while we build our client list — book now to lock them in.'
+              : 'Heavily soiled vehicles may cost more. We always confirm the price before we start.'}
+          </p>
         </Container>
       </section>
 
@@ -80,7 +115,7 @@ export default function PackagesPage() {
                     <th key={p.slug} scope="col" className="px-1 py-3 text-center font-semibold sm:px-5 sm:py-4">
                       <span className="sm:hidden">{p.name.split(' ')[0]}</span>
                       <span className="hidden sm:inline">{p.name}</span>
-                      <span className="block text-base font-black text-teal-300 sm:text-lg">{usd(p.price)}</span>
+                      <span className="block text-base font-black text-teal-300 sm:text-lg">from {usd(p.price)}</span>
                     </th>
                   ))}
                 </tr>
@@ -143,7 +178,18 @@ export default function PackagesPage() {
         </Container>
       </section>
 
-      <CtaBanner title="Not sure which package to choose?" text={`Call ${site.phone.display} and we'll help you pick the right service for your car and budget.`} />
+      <Testimonials />
+
+      <section className="bg-white py-16 sm:py-24">
+        <Container className="space-y-5">
+          <SectionHeading eyebrow="Plans & Gifts" title="Keep it clean all year" />
+          <PlanAndGiftCards />
+          <WinterServices />
+        </Container>
+      </section>
+
+      <CtaBanner title="Not sure which package to choose?"
+ text={`Call ${site.phone.display} and we'll help you pick the right service for your car and budget.`} />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import Gallery from '@/components/Gallery';
 import JsonLd from '@/components/JsonLd';
 import {
   AreaGrid,
@@ -16,8 +17,18 @@ import {
   WhatYouNeed,
 } from '@/components/ui';
 import { pageMetadata } from '@/lib/metadata';
-import { breadcrumbSchema, faqSchema, graph, ids } from '@/lib/schema';
-import { getServiceArea, hours, packages, requirements, serviceAreas, site, usd, type ServiceArea } from '@/lib/site';
+import { breadcrumbSchema, faqSchema, graph, ids, offerFor } from '@/lib/schema';
+import {
+  getServiceArea,
+  hours,
+  lowestPackagePrice,
+  packages,
+  requirements,
+  serviceAreas,
+  site,
+  usd,
+  type ServiceArea,
+} from '@/lib/site';
 
 export const dynamicParams = false;
 
@@ -30,7 +41,7 @@ export async function generateMetadata({ params }: PageProps<'/service-areas/[ci
   if (!area) return {};
   return pageMetadata({
     title: `Mobile Car Detailing in ${area.name}, OH`,
-    description: `Mobile car detailing in ${area.name}, OH (${area.zips.join(', ')}). Hand wash from $50, interior detail $75, full detail $120 — in your driveway. Call ${site.phone.display}.`,
+    description: `Mobile car detailing in ${area.name}, OH (${area.zips.join(', ')}). Full detail from $120, interior from $75, hand wash from $50 — in your driveway. Call ${site.phone.display}.`,
     path: `/service-areas/${area.slug}`,
   });
 }
@@ -45,11 +56,11 @@ function areaFaqs(area: ServiceArea) {
     },
     {
       q: `What do I need to provide for a detail in ${area.name}?`,
-      a: `${requirements.items.map((i) => i.title).join(' and ')} — that's all. ${requirements.weBring}`,
+      a: `${requirements.items.map((i) => i.title).join(' and ')} — that's all. ${requirements.weBring} ${requirements.interiorOnly}`,
     },
     {
       q: `How much does car detailing cost in ${area.name}?`,
-      a: `The same as everywhere we serve: Exterior Wash from $50, Interior Detail from $75 and Full Detail from $120. Add-ons start at $20.`,
+      a: `The same as everywhere we serve, priced by vehicle size: Full Detail $120–$165, Interior Detail $75–$105 and Exterior Wash $50–$70. Add-ons start at $20.`,
     },
     {
       q: `When can you come to ${area.name}?`,
@@ -90,9 +101,7 @@ export default async function AreaPage({ params }: PageProps<'/service-areas/[ci
               '@type': 'OfferCatalog',
               name: `Detailing packages in ${area.name}`,
               itemListElement: packages.map((p) => ({
-                '@type': 'Offer',
-                price: p.price.toFixed(2),
-                priceCurrency: 'USD',
+                ...offerFor(p),
                 itemOffered: { '@id': `${site.url}/packages/${p.slug}#service` },
               })),
             },
@@ -132,7 +141,7 @@ export default async function AreaPage({ params }: PageProps<'/service-areas/[ci
             <ul className="mt-8 space-y-3">
               <CheckItem>Hand washed with the two-bucket method — never automatic brushes</CheckItem>
               <CheckItem>Weeknight and weekend appointments in {area.name}</CheckItem>
-              <CheckItem>Packages from {usd(packages[0].price)}, confirmed before we start</CheckItem>
+              <CheckItem>Packages from {usd(lowestPackagePrice)}, confirmed before we start</CheckItem>
               {area.zips.length > 0 && <CheckItem>Serving ZIP code{area.zips.length > 1 ? 's' : ''} {area.zips.join(', ')}</CheckItem>}
             </ul>
           </div>
@@ -150,6 +159,8 @@ export default async function AreaPage({ params }: PageProps<'/service-areas/[ci
           </div>
         </Container>
       </section>
+
+      <Gallery town={area.name} />
 
       <section className="bg-mist-50 py-14 sm:py-20">
         <Container>

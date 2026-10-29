@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...packages.map((p) => entry(`/packages/${p.slug}`, 0.8)),
     entry('/service-areas', 0.8),
     ...serviceAreas.map((a) => entry(`/service-areas/${a.slug}`, a.homeBase ? 0.8 : 0.7)),
+    entry('/maintenance-plan', 0.7),
+    entry('/gift-cards', 0.7),
     entry('/contact', 0.7, 'yearly'),
     entry('/terms', 0.2, 'yearly'),
     entry('/privacy', 0.2, 'yearly'),

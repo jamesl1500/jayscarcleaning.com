@@ -3,6 +3,15 @@ import Image from 'next/image';
 import { hours, packages, serviceAreas, site, usd } from '@/lib/site';
 import { Icon } from './ui';
 
+// Only profiles with a URL set in site.ts are shown.
+const socials = (
+  [
+    ['Instagram', site.social.instagram],
+    ['TikTok', site.social.tiktok],
+    ['Facebook', site.social.facebook],
+  ] as [string, string][]
+).filter(([, url]) => url);
+
 export default function Footer() {
   return (
     <footer className="bg-navy-950 text-mist-200/70">
@@ -39,13 +48,23 @@ export default function Footer() {
               {packages.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/packages/${p.slug}`} className="inline-flex min-h-11 min-w-11 items-center hover:text-teal-300 transition-colors">
-                    {p.name} — {usd(p.price)}
+                    {p.name} — from {usd(p.price)}
                   </Link>
                 </li>
               ))}
               <li>
                 <Link href="/packages#addons" className="inline-flex min-h-11 min-w-11 items-center hover:text-teal-300 transition-colors">
                   Add-On Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/maintenance-plan" className="inline-flex min-h-11 min-w-11 items-center hover:text-teal-300 transition-colors">
+                  Maintenance Plan
+                </Link>
+              </li>
+              <li>
+                <Link href="/gift-cards" className="inline-flex min-h-11 min-w-11 items-center hover:text-teal-300 transition-colors">
+                  Gift Cards
                 </Link>
               </li>
               <li>
@@ -85,6 +104,22 @@ export default function Footer() {
             >
               Book Online
             </Link>
+            {socials.length > 0 && (
+              <ul className="mt-6 flex flex-wrap gap-x-5 text-sm">
+                {socials.map(([name, url]) => (
+                  <li key={name}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener"
+                      className="inline-flex min-h-11 items-center text-white hover:text-teal-300 transition-colors"
+                    >
+                      {name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
 
