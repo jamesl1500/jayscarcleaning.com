@@ -92,6 +92,14 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
+          <p className="flex gap-4">
+            <Link href="/terms" className="inline-flex min-h-11 items-center text-mist-200 hover:text-teal-300 transition-colors">
+              Terms
+            </Link>
+            <Link href="/privacy" className="inline-flex min-h-11 items-center text-mist-200 hover:text-teal-300 transition-colors">
+              Privacy
+            </Link>
+          </p>
           <p>
             Built by{' '}
             <a

@@ -39,7 +39,15 @@ export default function FunnelLayout({ children }: Readonly<{ children: React.Re
           ·{' '}
           <a href={site.email.href} className="inline-flex min-h-11 items-center hover:text-teal-300">
             {site.email.display}
-          </a>
+          </a>{' '}
+          ·{' '}
+          <Link href="/terms" className="inline-flex min-h-11 items-center hover:text-teal-300">
+            Terms
+          </Link>{' '}
+          ·{' '}
+          <Link href="/privacy" className="inline-flex min-h-11 items-center hover:text-teal-300">
+            Privacy
+          </Link>
         </p>
       </footer>
       <MobileActionBar />

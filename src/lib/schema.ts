@@ -102,6 +102,8 @@ export function siteGraph() {
         '@id': ids.owner,
         name: site.owner,
         jobTitle: 'Owner & Lead Detailer',
+        email: site.email.display,
+        telephone: site.phone.e164,
         image: abs('/james-latten-clean-lab-detailing-owner.jpg'),
         worksFor: { '@id': ids.business },
       },

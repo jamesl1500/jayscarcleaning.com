@@ -17,5 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/service-areas', 0.8),
     ...serviceAreas.map((a) => entry(`/service-areas/${a.slug}`, a.homeBase ? 0.8 : 0.7)),
     entry('/contact', 0.7, 'yearly'),
+    entry('/terms', 0.2, 'yearly'),
+    entry('/privacy', 0.2, 'yearly'),
   ];
 }
