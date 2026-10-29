@@ -65,9 +65,9 @@ export const hours: Hours[] = [
   {
     label: 'Monday – Friday',
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '17:00',
+    opens: '10:00',
     closes: '22:00',
-    display: '5:00 PM – 10:00 PM',
+    display: '10:00 AM – 10:00 PM',
   },
   {
     label: 'Saturday – Sunday',
