@@ -1,4 +1,4 @@
-import { addons, getAddon, hours, packages, serviceAreas, site, type Faq, type Package, type ServiceArea } from './site';
+import { addons, getAddon, hours, packages, priceRange, serviceAreas, site, type Faq, type Package, type ServiceArea } from './site';
 
 const abs = (path = '/') => new URL(path, site.url).toString();
 
@@ -8,20 +8,25 @@ export const ids = {
   owner: abs('/#owner'),
 };
 
-function offerFor(pkg: Package) {
+// Price varies by vehicle size, so offers carry the sedan-to-truck range.
+export function offerFor(pkg: Package) {
+  const { min, max } = priceRange(pkg.prices);
   return {
     '@type': 'Offer',
-    price: pkg.price.toFixed(2),
+    price: min.toFixed(2),
     priceCurrency: 'USD',
     availability: 'https://schema.org/InStock',
     url: abs(`/packages/${pkg.slug}`),
     priceSpecification: {
       '@type': 'PriceSpecification',
-      minPrice: pkg.price.toFixed(2),
+      minPrice: min.toFixed(2),
+      maxPrice: max.toFixed(2),
       priceCurrency: 'USD',
     },
   };
 }
+
+const sameAs = Object.values(site.social).filter(Boolean);
 
 export function businessSchema() {
   return {
@@ -35,6 +40,7 @@ export function businessSchema() {
     image: abs('/opengraph-image'),
     logo: abs('/icon-512.png'),
     priceRange: site.priceRange,
+    ...(sameAs.length && { sameAs }),
     currenciesAccepted: 'USD',
     founder: { '@id': ids.owner },
     // Service-area business: city/region only, no street address.

@@ -6,7 +6,8 @@ export const site = {
   url: 'https://www.cleanlabdetailing.com',
   tagline: 'Mobile Car Detailing in Sheffield Lake & Lorain County',
   description:
-    'Mobile car detailing in Sheffield Lake, OH and nearby Lorain County. Hand washes, interior details and full details in your driveway — packages from $50. Call (216) 889-7822.',
+    'Owner-done mobile car detailing in Sheffield Lake, OH and nearby Lorain County. Full details from $120, interiors from $75, hand washes from $50 — in your driveway. Call (216) 889-7822.',
+  positioning: 'Lab-precise detailing in your driveway — owner-done, evenings and weekends, Sheffield Lake to Westlake.',
   owner: 'James Latten',
   phone: {
     display: '(216) 889-7822',
@@ -27,8 +28,8 @@ export const site = {
   },
   // Centre of the service area (Sheffield Lake), used for structured data only.
   geo: { latitude: 41.4876, longitude: -82.1013 },
-  priceRange: '$50–$120',
-  lastUpdated: '2026-10-24',
+  priceRange: '$50–$165',
+  lastUpdated: '2026-10-29',
   // Google tag (gtag.js) IDs. One script load configures both.
   gaId: 'G-BCQHR9YP2N',
   adsId: 'AW-18488043490',
@@ -40,7 +41,73 @@ export const site = {
     booking: '',
     call: '',
   },
+  // Shows a "Launch pricing" label next to prices. Turn off when prices step up
+  // (plan: after 25 Google reviews, around March 2027).
+  launchPricing: true,
+  // Square Appointments booking page. While empty, the booking request form is
+  // the only way to book. Once set, /contact leads with real-time booking.
+  squareBookingUrl: 'https://app.squareup.com/appointments/book/bazun26f4bn4qq/LJJRDW216PM58/start',
+  // Deposit Square takes at booking. 0 = none (Square charges after the job).
+  // Match this to the Square Appointments payment settings.
+  depositAmount: 25,
+  // Square eGift Card purchase page. While empty, the Gift Cards page asks
+  // buyers to call or email instead.
+  squareGiftCardUrl: 'https://app.squareup.com/gift/MLMCKENYCYVNX/order',
+  // Google Business Profile review link ("Ask for reviews" → copy link).
+  googleReviewUrl: '',
+  // Social profiles. Empty ones are hidden from the footer and structured data.
+  social: {
+    instagram: '',
+    tiktok: '',
+    facebook: '',
+  },
+  // Winter service note (outlet-only interiors, garage details). Turn off in April.
+  winterServices: true,
 } as const;
+
+// Vehicle size tiers. Every package and plan is priced per tier.
+export type SizeTier = 'sedan' | 'suv' | 'truck';
+
+export const sizeTiers: { id: SizeTier; name: string; desc: string }[] = [
+  { id: 'sedan', name: 'Sedan', desc: 'Cars, coupes & hatchbacks' },
+  { id: 'suv', name: 'SUV', desc: 'Crossovers & 2-row SUVs' },
+  { id: 'truck', name: 'Truck / Van', desc: '3-row SUVs, pickups, minivans & vans' },
+];
+
+// What the booking form offers under "Vehicle type", and the tier each maps to.
+export const vehicleTypes: { label: string; tier: SizeTier }[] = [
+  { label: 'Sedan / Hatchback', tier: 'sedan' },
+  { label: 'Coupe / Sports Car', tier: 'sedan' },
+  { label: 'Convertible', tier: 'sedan' },
+  { label: 'Crossover / SUV (2 rows)', tier: 'suv' },
+  { label: 'SUV (3 rows)', tier: 'truck' },
+  { label: 'Pickup Truck', tier: 'truck' },
+  { label: 'Minivan / Van', tier: 'truck' },
+];
+
+export const tierFor = (vehicle: string): SizeTier => vehicleTypes.find((v) => v.label === vehicle)?.tier ?? 'sedan';
+
+// "How did you hear about us?" options on the booking form.
+export const leadSources = [
+  'Google search',
+  'Google Maps',
+  'Facebook',
+  'Instagram',
+  'TikTok',
+  'Nextdoor',
+  'Saw you working in my neighborhood',
+  'Door hanger or flyer',
+  'Friend or family referral',
+  'Gift card',
+  'Returning customer',
+  'Other',
+];
+
+export const referral = {
+  amount: 15,
+  headline: 'Give $15, get $15',
+  desc: 'Send a friend our way. They get $15 off their first detail, and you get $15 off your next one when they book.',
+};
 
 // What the customer needs to provide. Shown on every service, area and funnel
 // page, in the FAQ, on the booking form and in the confirmation email.
@@ -48,15 +115,43 @@ export const requirements = {
   headline: 'All we need from you: water and electricity.',
   items: [
     {
+      id: 'water',
       title: 'A water source',
       desc: 'An outdoor spigot (hose bib) within reach of where your car is parked.',
     },
     {
+      id: 'power',
       title: 'An electrical outlet',
       desc: 'A standard outdoor or garage outlet we can plug into for our vacuums and tools.',
     },
   ],
   weBring: 'We bring everything else — all of the equipment, products and towels needed to detail your car.',
+  // Interior-only jobs don't use water, which keeps them bookable all winter.
+  interiorOnly: 'Booking an Interior Detail? We only need the outlet — no water.',
+};
+
+// Winter menu (Nov–Apr), shown while site.winterServices is on.
+export const winterServices = {
+  headline: 'Detailing all winter long',
+  intro: 'Spigot shut off for the season? Too cold for a wash? Here’s what we can still do.',
+  items: [
+    {
+      title: 'Interior Details need only an outlet',
+      desc: 'No water required, so interiors run all winter — salt stains, slushy mats and all.',
+    },
+    {
+      title: 'Garage details',
+      desc: 'Have a heated or attached garage? We can do any package inside it.',
+    },
+    {
+      title: 'Winter Interior Reset',
+      desc: 'Our Interior Detail focused on salt-stained carpets, soaked floor mats and tracked-in grime.',
+    },
+    {
+      title: 'Rinseless exterior wash',
+      desc: 'On days above freezing we bring warm water for a rinseless wash that lifts salt and road grime.',
+    },
+  ],
 };
 
 export type Hours = { label: string; days: string[]; opens: string; closes: string; display: string };
@@ -140,14 +235,18 @@ export type Faq = { q: string; a: string };
 
 const waterPowerFaq: Faq = {
   q: 'What do I need to provide?',
-  a: `Just two things: a water source (an outdoor spigot near where the car is parked) and an electrical outlet we can plug into. That's all — we bring everything else.`,
+  a: `Just two things: a water source (an outdoor spigot near where the car is parked) and an electrical outlet we can plug into. That's all — we bring everything else. Booking an Interior Detail? Then we only need the outlet.`,
 };
 
 export type Package = {
   slug: string;
   number: string;
   name: string;
+  // Sedan price; the "from" price shown wherever only one number fits.
   price: number;
+  prices: Record<SizeTier, number>;
+  // Interior-only work runs on an outlet alone.
+  needsWater: boolean;
   duration: string;
   tagline: string;
   summary: string;
@@ -183,12 +282,14 @@ const interiorItems = [
   { title: 'Air Vent Dusting', desc: 'Compressed air and detailing brushes clear dust from every vent.' },
 ];
 
-export const packages: Package[] = [
+const packageList: Package[] = [
   {
     slug: 'exterior-wash',
-    number: '01',
+    number: '03',
     name: 'Exterior Wash',
     price: 50,
+    prices: { sedan: 50, suv: 60, truck: 70 },
+    needsWater: true,
     duration: '45–60 min',
     tagline: 'A spotless exterior, bumper to bumper.',
     summary:
@@ -228,6 +329,8 @@ export const packages: Package[] = [
     number: '02',
     name: 'Interior Detail',
     price: 75,
+    prices: { sedan: 75, suv: 90, truck: 105 },
+    needsWater: false,
     duration: '60–90 min',
     tagline: 'A deep-cleaned cabin that feels brand new.',
     summary:
@@ -252,6 +355,10 @@ export const packages: Package[] = [
     ],
     faqs: [
       {
+        q: 'Do you need water for an Interior Detail?',
+        a: 'No. An Interior Detail only needs an electrical outlet, so we can do it all winter — even after your outdoor spigot is shut off.',
+      },
+      {
         q: 'Can you get pet hair out?',
         a: 'Standard vacuuming removes loose hair. For hair that is woven into carpet and upholstery, add Pet Hair Removal (+$25) and we use specialized tools to pull it out.',
       },
@@ -264,9 +371,11 @@ export const packages: Package[] = [
   },
   {
     slug: 'full-detail',
-    number: '03',
+    number: '01',
     name: 'Full Detail',
     price: 120,
+    prices: { sedan: 120, suv: 145, truck: 165 },
+    needsWater: true,
     duration: '2–3 hours',
     tagline: 'The complete package — showroom ready.',
     summary:
@@ -305,7 +414,7 @@ export const packages: Package[] = [
     faqs: [
       {
         q: 'How is the Full Detail different from booking both packages?',
-        a: 'You get everything in the Exterior Wash and Interior Detail, plus full glass, trim dressing, an engine bay wipe down and a final walkthrough — for $120 instead of $125 booked separately.',
+        a: 'You get everything in the Exterior Wash and Interior Detail, plus full glass, trim dressing, an engine bay wipe down and a final walkthrough — and it costs $5–$10 less than booking both separately, depending on vehicle size.',
       },
       {
         q: 'How long does a Full Detail take?',
@@ -317,7 +426,61 @@ export const packages: Package[] = [
   },
 ];
 
+// Full Detail leads everywhere packages are listed; the wash is the entry point.
+export const packages = [...packageList].sort((a, b) => a.number.localeCompare(b.number));
+
 export const getPackage = (slug: string) => packages.find((p) => p.slug === slug);
+
+// Lowest and highest price a package (or plan) can cost across size tiers.
+export const priceRange = (prices: Record<SizeTier, number>) => {
+  const values = Object.values(prices);
+  return { min: Math.min(...values), max: Math.max(...values) };
+};
+
+export const lowestPackagePrice = Math.min(...packages.map((p) => p.price));
+
+// Maintenance plans: a recurring Exterior Wash at a set per-visit price, with
+// first pick of time slots. Booked through the same form as packages.
+export type Plan = {
+  slug: string;
+  name: string;
+  cadence: string;
+  prices: Record<SizeTier, number>;
+};
+
+export const plans: Plan[] = [
+  { slug: 'plan-biweekly', name: 'Every-Other-Week Wash Plan', cadence: 'every 2 weeks', prices: { sedan: 40, suv: 50, truck: 60 } },
+  { slug: 'plan-monthly', name: 'Monthly Wash Plan', cadence: 'once a month', prices: { sedan: 45, suv: 55, truck: 65 } },
+];
+
+export const planPerks = [
+  'Full Exterior Wash every visit — hand wash, wheels, tires, glass and door jambs',
+  'First pick of time slots, before the calendar opens to new bookings',
+  'Same day and time each visit, so you never have to rebook',
+  'Pause or cancel any time before your next visit',
+];
+
+// Anything the booking form can book: a package or a maintenance plan.
+export type Bookable = { slug: string; name: string; prices: Record<SizeTier, number>; needsWater: boolean; detail: string };
+
+export const bookables: Bookable[] = [
+  ...packages.map((p) => ({ slug: p.slug, name: p.name, prices: p.prices, needsWater: p.needsWater, detail: p.duration })),
+  ...plans.map((p) => ({ slug: p.slug, name: p.name, prices: p.prices, needsWater: true, detail: `per visit, ${p.cadence}` })),
+];
+
+export const getBookable = (slug: string) => bookables.find((b) => b.slug === slug);
+
+// Customer reviews. Paste real ones in here (ideally copied from Google with
+// the customer's first name and town). The section stays hidden while empty.
+export type Review = { name: string; town: string; text: string; rating: 1 | 2 | 3 | 4 | 5; packageSlug?: string };
+
+export const reviews: Review[] = [];
+
+// Before/after photos. Put both images in /public/gallery and add an entry.
+// The gallery stays hidden while empty; town names should match serviceAreas.
+export type GalleryItem = { before: string; after: string; town: string; vehicle: string; packageSlug: string };
+
+export const gallery: GalleryItem[] = [];
 export const getAddon = (id: string) => addons.find((a) => a.id === id);
 
 // Service areas. Keep this list to places you actually serve — each one
@@ -472,7 +635,7 @@ export const generalFaqs: Faq[] = [
   },
   {
     q: 'How much does mobile car detailing cost?',
-    a: 'Packages start at $50 for an Exterior Wash, $75 for an Interior Detail and $120 for a Full Detail. These are starting prices — larger vehicles or heavily soiled interiors may cost more, and we always confirm the price before we start.',
+    a: 'Prices depend on vehicle size. A Full Detail is $120 for a sedan, $145 for an SUV and $165 for a truck or van. An Interior Detail is $75 / $90 / $105 and an Exterior Wash is $50 / $60 / $70. Heavily soiled vehicles may cost more, and we always confirm the price before we start.',
   },
   {
     q: 'How long does a detail take?',
@@ -484,7 +647,15 @@ export const generalFaqs: Faq[] = [
   },
   {
     q: 'How do I book?',
-    a: `Submit the booking form online or call ${site.phone.display}. We confirm every appointment within 24 hours by phone or email.`,
+    a: `Book online or call ${site.phone.display}. If you send a booking request, we confirm your appointment within 24 hours by phone or email.`,
+  },
+  {
+    q: 'Do you detail in the winter?',
+    a: 'Yes. Interior Details only need an electrical outlet, so they run all winter. If you have a heated or attached garage we can do any package inside it, and on days above freezing we offer a rinseless exterior wash.',
+  },
+  {
+    q: 'Do you sell gift cards?',
+    a: 'Yes — digital gift cards in any amount, delivered by email and easy to print. They work for every package and add-on. See the Gift Cards page.',
   },
 ];
 

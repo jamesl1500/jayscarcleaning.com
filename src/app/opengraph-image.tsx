@@ -8,6 +8,6 @@ export default function Image() {
   return ogImage({
     eyebrow: 'Mobile Car Detailing',
     title: 'Sheffield Lake & Lorain County',
-    subtitle: 'Exterior $50 · Interior $75 · Full Detail $120 — in your driveway',
+    subtitle: 'Full Detail from $120 · Interior from $75 · Hand Wash from $50 — in your driveway',
   });
 }

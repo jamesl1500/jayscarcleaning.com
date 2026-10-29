@@ -3,10 +3,23 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { trackAdsConversion, trackEvent } from '@/lib/gtag';
-import { addons, packages, serviceAreas, usd } from '@/lib/site';
+import {
+  addons,
+  bookables,
+  getBookable,
+  leadSources,
+  packages,
+  plans,
+  referral,
+  serviceAreas,
+  sizeTiers,
+  tierFor,
+  usd,
+  vehicleTypes,
+} from '@/lib/site';
 
-const vehicleTypes = ['Sedan', 'SUV / Crossover', 'Truck', 'Van / Minivan', 'Sports Car / Coupe', 'Convertible', 'Other'];
-const timeWindows = ['Morning (weekends)', 'Afternoon (weekends)', 'Evening (5–10 PM)', 'Flexible'];
+const timeWindows = ['Morning', 'Afternoon', 'Evening (5–10 PM)', 'Flexible'];
+const REFERRAL_SOURCE = 'Friend or family referral';
 
 // 16px text on phones: anything smaller makes iOS Safari zoom in on focus.
 const field =
@@ -51,10 +64,12 @@ export default function BookingForm({
     address: '',
     city: '',
     vehicle: '',
-    pkg: packages.some((p) => p.slug === initialPackage) ? initialPackage : '',
+    pkg: bookables.some((b) => b.slug === initialPackage) ? initialPackage : '',
     date: '',
     time: '',
     notes: '',
+    heardAbout: '',
+    referredBy: '',
     hookups: false,
     company: '', // honeypot
   });
@@ -86,8 +101,16 @@ export default function BookingForm({
         throw new Error(data.error || 'Something went wrong. Please try again or give us a call.');
       }
 
-      const value = (selectedPkg?.price ?? 0) + addonTotal;
-      trackEvent('generate_lead', { currency: 'USD', value, package: form.pkg, city: form.city, lead_source: source });
+      const value = (selected?.prices[tier] ?? 0) + addonTotal;
+      trackEvent('generate_lead', {
+        currency: 'USD',
+        value,
+        package: form.pkg,
+        city: form.city,
+        vehicle_size: tier,
+        lead_source: source,
+        heard_about: form.heardAbout,
+      });
       trackAdsConversion('booking', { value });
       router.push(`/thank-you?package=${form.pkg}`);
     } catch (err) {
@@ -96,7 +119,11 @@ export default function BookingForm({
     }
   }
 
-  const selectedPkg = packages.find((p) => p.slug === form.pkg);
+  const selected = getBookable(form.pkg);
+  const tier = tierFor(form.vehicle);
+  const tierName = sizeTiers.find((t) => t.id === tier)?.name;
+  // Interior-only bookings don't need water; everything else does.
+  const needsWater = selected?.needsWater ?? true;
   const addonTotal = selectedAddons.reduce((sum, id) => sum + (addons.find((a) => a.id === id)?.price ?? 0), 0);
 
   const addonButtons = (
@@ -247,8 +274,8 @@ export default function BookingForm({
               Select vehicle type
             </option>
             {vehicleTypes.map((v) => (
-              <option key={v} value={v}>
-                {v}
+              <option key={v.label} value={v.label}>
+                {v.label}
               </option>
             ))}
           </select>
@@ -262,11 +289,20 @@ export default function BookingForm({
             <option value="" disabled>
               Select a package
             </option>
-            {packages.map((p) => (
-              <option key={p.slug} value={p.slug}>
-                {p.name} — {usd(p.price)} ({p.duration})
-              </option>
-            ))}
+            <optgroup label="Packages">
+              {packages.map((p) => (
+                <option key={p.slug} value={p.slug}>
+                  {p.name} — {form.vehicle ? usd(p.prices[tier]) : `from ${usd(p.price)}`} ({p.duration})
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Maintenance plans (exterior wash)">
+              {plans.map((p) => (
+                <option key={p.slug} value={p.slug}>
+                  {p.name} — {form.vehicle ? usd(p.prices[tier]) : `from ${usd(p.prices.sedan)}`}/visit
+                </option>
+              ))}
+            </optgroup>
           </select>
         </div>
         <div>
@@ -324,6 +360,42 @@ export default function BookingForm({
         </fieldset>
       )}
 
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+        <div className={form.heardAbout === REFERRAL_SOURCE ? '' : 'sm:col-span-2'}>
+          <label htmlFor={`${source}-heard`} className={labelCls}>
+            How did you hear about us?
+            <Required />
+          </label>
+          <select id={`${source}-heard`} name="heardAbout" required value={form.heardAbout} onChange={handleChange} className={field}>
+            <option value="" disabled>
+              Select one
+            </option>
+            {leadSources.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </div>
+        {form.heardAbout === REFERRAL_SOURCE && (
+          <div>
+            <label htmlFor={`${source}-referred`} className={labelCls}>
+              Who referred you?
+            </label>
+            <input
+              id={`${source}-referred`}
+              name="referredBy"
+              autoCapitalize="words"
+              value={form.referredBy}
+              onChange={handleChange}
+              placeholder="Their name or referral code"
+              className={field}
+            />
+            <p className="mt-1.5 text-xs text-navy-600">You both get {usd(referral.amount)} off.</p>
+          </div>
+        )}
+      </div>
+
       {!compact && (
         <div>
           <label htmlFor={`${source}-notes`} className={labelCls}>
@@ -335,7 +407,7 @@ export default function BookingForm({
             rows={4}
             value={form.notes}
             onChange={handleChange}
-            placeholder="Parking details, gate codes, pet hair, stains, anything we should know…"
+            placeholder="Parking details, gate codes, garage access, pet hair, stains, gift card code…"
             className={`${field} resize-none`}
           />
         </div>
@@ -355,21 +427,30 @@ export default function BookingForm({
           className="mt-0.5 h-5 w-5 shrink-0 accent-teal-600"
         />
         <span>
-          <strong className="font-semibold">I&apos;ll have a water source and an electrical outlet available.</strong>{' '}
-          <span className="text-navy-600">That&apos;s all we need — we bring everything else.</span>
+          <strong className="font-semibold">
+            {needsWater
+              ? 'I’ll have a water source and an electrical outlet available.'
+              : 'I’ll have an electrical outlet available.'}
+          </strong>{' '}
+          <span className="text-navy-600">
+            {needsWater ? 'That’s all we need — we bring everything else.' : 'No water needed for an Interior Detail.'}
+          </span>
           <Required />
         </span>
       </label>
 
-      {selectedPkg && (
-        <p className="flex items-center justify-between rounded-2xl bg-navy-900 px-5 py-4 text-sm text-mist-100">
+      {selected && (
+        <p className="flex items-center justify-between gap-4 rounded-2xl bg-navy-900 px-5 py-4 text-sm text-mist-100">
           <span>
-            Estimated starting price
-            <span className="block text-xs text-mist-200/60">Confirmed before we start</span>
+            {form.vehicle ? `Estimated price · ${tierName}` : 'Estimated price · Sedan'}
+            <span className="block text-xs text-mist-200/60">
+              {selected.slug.startsWith('plan-') ? 'Per visit · ' : ''}Confirmed before we start
+            </span>
           </span>
-          <span className="text-2xl font-black text-teal-300">{usd(selectedPkg.price + addonTotal)}</span>
+          <span className="text-2xl font-black text-teal-300">{usd(selected.prices[tier] + addonTotal)}</span>
         </p>
       )}
+
 
       {error && (
         <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">

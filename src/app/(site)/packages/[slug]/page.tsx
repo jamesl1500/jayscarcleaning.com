@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import Gallery from '@/components/Gallery';
 import JsonLd from '@/components/JsonLd';
 import {
   AreaGrid,
@@ -9,13 +10,16 @@ import {
   CtaBanner,
   FaqList,
   Icon,
+  LaunchBadge,
   PageHero,
   SectionHeading,
+  Testimonials,
   WhatYouNeed,
+  WinterServices,
 } from '@/components/ui';
 import { pageMetadata } from '@/lib/metadata';
 import { breadcrumbSchema, faqSchema, graph, serviceSchema } from '@/lib/schema';
-import { getAddon, getPackage, packages, site, usd } from '@/lib/site';
+import { getAddon, getPackage, packages, site, sizeTiers, usd } from '@/lib/site';
 
 export const dynamicParams = false;
 
@@ -55,12 +59,21 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
         intro={pkg.summary}
       >
         <div className="flex shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-4 rounded-3xl bg-navy-800/80 p-5 ring-1 ring-white/10 sm:p-6 md:block md:text-right">
-          <div>
-            <p className="text-5xl font-black tracking-tight text-white sm:text-6xl">{usd(pkg.price)}</p>
-          <p className="mt-1 text-sm text-mist-200/75">Starting price</p>
-          <p className="mt-1 flex items-center gap-1.5 text-sm text-mist-200/75 md:justify-end">
-            <Icon name="clock" className="h-4 w-4" /> {pkg.duration}
-          </p>
+          <div className="w-full md:min-w-64">
+            <dl className="space-y-2">
+              {sizeTiers.map((t) => (
+                <div key={t.id} className="flex items-baseline justify-between gap-6">
+                  <dt className="text-sm text-mist-200/75">{t.name}</dt>
+                  <dd className="text-3xl font-black tracking-tight text-white">{usd(pkg.prices[t.id])}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-3 flex flex-wrap items-center justify-between gap-2 text-sm text-mist-200/75">
+              <span className="flex items-center gap-1.5">
+                <Icon name="clock" className="h-4 w-4" /> {pkg.duration}
+              </span>
+              <LaunchBadge />
+            </p>
           </div>
           <Link href={`/contact?package=${pkg.slug}`} className={`${button.primary} w-full sm:w-auto md:mt-5 md:w-full`}>
             Book {pkg.name}
@@ -70,8 +83,8 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
 
       {pkg.featured && (
         <div className="border-b border-teal-500/20 bg-navy-950 py-4 text-center text-sm text-mist-100">
-          <strong className="text-teal-300">Save $5</strong> vs. booking the Exterior Wash ($50) and Interior Detail
-          ($75) separately.
+          <strong className="text-teal-300">Save $5–$10</strong> vs. booking the Exterior Wash and Interior Detail
+          separately, depending on vehicle size.
         </div>
       )}
 
@@ -122,7 +135,7 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
                 {[
                   ['Duration', pkg.duration],
                   ['Location', 'Your driveway'],
-                  ['You provide', 'Water + electricity'],
+                  ['You provide', pkg.needsWater ? 'Water + electricity' : 'An outlet only'],
                   ['Method', '100% hand detailed'],
                 ].map(([k, v]) => (
                   <div key={k} className="flex justify-between border-b border-white/10 pb-4">
@@ -130,10 +143,12 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
                     <dd className="font-semibold text-white">{v}</dd>
                   </div>
                 ))}
-                <div className="flex items-center justify-between pt-1">
-                  <dt className="text-mist-200/75">Starting price</dt>
-                  <dd className="text-3xl font-black text-teal-300">{usd(pkg.price)}</dd>
-                </div>
+                {sizeTiers.map((t) => (
+                  <div key={t.id} className="flex items-center justify-between">
+                    <dt className="text-mist-200/75">{t.name}</dt>
+                    <dd className="text-2xl font-black text-teal-300">{usd(pkg.prices[t.id])}</dd>
+                  </div>
+                ))}
               </dl>
               <Link href={`/contact?package=${pkg.slug}`} className={`${button.primary} mt-7 w-full`}>
                 Book {pkg.name}
@@ -143,9 +158,13 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
               </a>
             </div>
             <WhatYouNeed compact />
+            {!pkg.needsWater && <WinterServices />}
           </aside>
         </Container>
       </section>
+
+      <Testimonials packageSlug={pkg.slug} />
+      <Gallery dark />
 
       <section className="bg-mist-50 py-14 sm:py-20">
         <Container>
@@ -189,7 +208,8 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
                 <span>
                   <span className="block text-xs uppercase tracking-wider text-teal-300">Also available</span>
                   <span className="mt-1 block text-lg font-bold text-white">
-                    {p.name} — {usd(p.price)}
+                    {p.name} — from {usd(p.price)}
+
                   </span>
                 </span>
                 <Icon name="arrow" className="h-5 w-5 text-teal-300 transition-transform group-hover:translate-x-1" />
@@ -199,7 +219,7 @@ export default async function PackagePage({ params }: PageProps<'/packages/[slug
         </Container>
       </section>
 
-      <CtaBanner title={`Book your ${pkg.name} today`} text={`${pkg.tagline} Starting at ${usd(pkg.price)} — we come to you.`} />
+      <CtaBanner title={`Book your ${pkg.name} today`} text={`${pkg.tagline} From ${usd(pkg.price)} for a sedan — we come to you.`} />
     </>
   );
 }

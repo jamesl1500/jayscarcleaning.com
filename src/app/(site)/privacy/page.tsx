@@ -24,6 +24,7 @@ export default function PrivacyPage() {
         <li>The service address and town</li>
         <li>Your vehicle type, chosen package and add-ons</li>
         <li>Your preferred date and time, and any notes you add</li>
+        <li>How you heard about us, and the name of anyone who referred you</li>
       </ul>
       <p>
         If you call, text or email us, we keep the contact details and messages you send so we can reply and keep track
@@ -42,8 +43,9 @@ export default function PrivacyPage() {
       <h2>Who we share it with</h2>
       <p>
         We do not sell or rent your personal information. We share it only with service providers that help us run the
-        business, such as our email provider (which delivers booking requests and confirmations) and our website host,
-        and only as needed for them to provide that service. We may also disclose information if required by law.
+        business, such as our email provider (which delivers booking requests and confirmations), Square (which handles
+        online booking, deposits, payments and gift cards) and our website host, and only as needed for them to provide
+        that service. When you pay through Square, your card details go directly to Square — we never see or store them. We may also disclose information if required by law.
       </p>
 
       <h2>Cookies and analytics</h2>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Gallery from '@/components/Gallery';
 import JsonLd from '@/components/JsonLd';
 import {
   AreaGrid,
@@ -12,14 +13,19 @@ import {
   HeroBackdrop,
   HowItWorks,
   Icon,
+  LaunchBadge,
+  otherTiers,
   PackageCard,
+  PlanAndGiftCards,
   SectionHeading,
+  Testimonials,
   WhatYouNeed,
+  WinterServices,
   type IconName,
 } from '@/components/ui';
 import { pageMetadata } from '@/lib/metadata';
 import { faqSchema, graph } from '@/lib/schema';
-import { addons, areaNames, generalFaqs, packages, serviceAreas, site, usd } from '@/lib/site';
+import { addons, areaNames, generalFaqs, getPackage, hours, packages, serviceAreas, site, usd } from '@/lib/site';
 
 export const metadata = pageMetadata({
   title: `Mobile Car Detailing Sheffield Lake, OH | ${site.name}`,
@@ -28,18 +34,26 @@ export const metadata = pageMetadata({
   absoluteTitle: true,
 });
 
+// Only claims that are true today. Add a review count here once there are
+// enough Google reviews to back it up.
 const stats = [
-  { value: '100+', label: 'Cars detailed' },
-  { value: '5★', label: 'Customer rating' },
+  { value: '1 owner', label: 'Every car done by James' },
+  { value: '100%', label: 'Hand washed' },
   { value: '7 days', label: 'Evenings & weekends' },
   { value: `${serviceAreas.length}`, label: 'Communities served' },
 ];
+
+const fullDetail = getPackage('full-detail')!;
 
 const reasons: { icon: IconName; title: string; desc: string }[] = [
   { icon: 'truck', title: 'We come to you', desc: 'Home, office or anywhere with a spigot and an outlet. No drive, no waiting room.' },
   { icon: 'shield', title: 'Paint-safe hand washing', desc: 'Two-bucket method, pH-neutral shampoo and clean microfiber — never automatic brushes.' },
   { icon: 'sparkle', title: 'Obsessive attention to detail', desc: 'Door jambs, vents, cup holders — the spots quick washes skip are where we start.' },
-  { icon: 'clock', title: 'Hours that fit real life', desc: 'Weeknights 5–10 PM and all day Saturday and Sunday.' },
+  {
+    icon: 'clock',
+    title: 'Hours that fit real life',
+    desc: `Open 7 days: ${hours.map((h) => `${h.label.replace(' – ', '–')} ${h.display}`).join(', ')}.`,
+  },
 ];
 
 export default function Home() {
@@ -61,8 +75,7 @@ export default function Home() {
               Mobile car detailing in <span className="text-teal-300">Sheffield Lake</span>, done in your driveway.
             </h1>
             <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-mist-200/85 sm:mt-6 sm:text-xl">
-              Hand washes, deep interior cleans and full details for Sheffield Lake, Avon Lake, Lorain and the rest of
-              Lorain County. You provide water and an outlet — we bring everything else.
+              {site.positioning} You provide water and an outlet — we bring everything else.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
               <Link href="/contact" className={`${button.primary} text-lg`}>
@@ -73,7 +86,7 @@ export default function Home() {
               </a>
             </div>
             <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2.5 text-sm text-mist-200/85 sm:mt-10 sm:gap-x-6">
-              {['Packages from $50', 'Hand wash only', 'Confirmed within 24 hours'].map((t) => (
+              {[`Full Detail from ${usd(fullDetail.price)}`, 'Hand wash only', 'Owner-done, start to finish'].map((t) => (
                 <li key={t} className="flex items-center gap-2">
                   <Icon name="check" className="h-4 w-4 text-teal-300" strokeWidth={3} /> {t}
                 </li>
@@ -82,7 +95,9 @@ export default function Home() {
           </div>
 
           <div className="rounded-[2rem] bg-navy-800/80 p-6 ring-1 ring-white/10 backdrop-blur sm:p-9">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-300">Simple pricing</p>
+            <p className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-teal-300">
+              Sedan pricing <LaunchBadge />
+            </p>
             <ul className="mt-5 divide-y divide-white/10">
               {packages.map((p) => (
                 <li key={p.slug}>
@@ -96,7 +111,7 @@ export default function Home() {
                           </span>
                         )}
                       </span>
-                      <span className="block text-sm text-mist-200/70">{p.duration}</span>
+                      <span className="block text-sm text-mist-200/70">{otherTiers(p.prices)}</span>
                     </span>
                     <span className="text-3xl font-black text-white">{usd(p.price)}</span>
                   </Link>
@@ -140,6 +155,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <Gallery />
+
       {/* Packages */}
       <section id="packages" className="bg-navy-900 py-16 sm:py-24">
         <Container>
@@ -161,6 +178,18 @@ export default function Home() {
           </p>
         </Container>
       </section>
+
+      <Testimonials />
+
+      {/* Plans, gift cards, winter */}
+      <section className="bg-mist-50 py-16 sm:py-24">
+        <Container className="space-y-5">
+          <SectionHeading eyebrow="More Ways to Book" title="Plans, gifts and winter detailing" />
+          <PlanAndGiftCards />
+          <WinterServices />
+        </Container>
+      </section>
+
 
       {/* Why us + add-ons */}
       <section className="bg-white py-16 sm:py-24">

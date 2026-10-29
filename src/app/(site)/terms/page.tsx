@@ -32,15 +32,36 @@ export default function TermsPage() {
       <h2>What you provide</h2>
       <p>
         You need to give us access to a water source (an outdoor spigot) and an electrical outlet near where the vehicle is
-        parked. You must own the vehicle or have the owner&apos;s permission to have it detailed, and have permission to
+        parked. An Interior Detail only needs the outlet. You must own the vehicle or have the owner&apos;s permission to have it detailed, and have permission to
         have the work done at the service location.
       </p>
 
       <h2>Pricing and payment</h2>
       <p>
-        Prices on this site are starting prices. The final price can change based on vehicle size and condition (for
-        example heavy pet hair, sand, mud or stains) or add-ons you choose. We&apos;ll tell you about any change before we
-        start the work. Payment is due when the service is complete.
+        Prices are set by vehicle size (sedan, SUV, or truck/van). The final price can change based on the vehicle&apos;s
+        condition (for example heavy pet hair, sand, mud or stains) or add-ons you choose. We&apos;ll tell you about any
+        change before we start the work. Payment is due when the service is complete. If you book online, a deposit may
+        be required to hold your time; it is applied to your total, and the deposit terms are shown when you book.
+      </p>
+
+      <h2>Maintenance plans</h2>
+      <p>
+        Maintenance plan visits are charged per visit at the plan price for your vehicle size. You can pause or cancel a
+        plan at any time by letting us know before your next scheduled visit. In winter, plan visits may be moved for
+        weather.
+      </p>
+
+      <h2>Gift cards</h2>
+      <p>
+        Gift cards can be used toward any service. If a service costs more than the card balance, the difference is due at
+        the appointment. Gift cards can&apos;t be exchanged for cash except where required by law. Treat a gift card like
+        cash — we can&apos;t replace a lost code we can&apos;t verify.
+      </p>
+
+      <h2>Referrals</h2>
+      <p>
+        Referral discounts apply once the referred customer completes their first paid service. Discounts can&apos;t be
+        exchanged for cash or combined with other offers unless we say so.
       </p>
 
       <h2>Rescheduling and cancellations</h2>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { button, Container, HeroBackdrop, Icon, WhatYouNeed } from '@/components/ui';
 import { pageMetadata } from '@/lib/metadata';
-import { getPackage, site } from '@/lib/site';
+import { getBookable, referral, site } from '@/lib/site';
 
 export const metadata = pageMetadata({
   title: 'Booking Request Received',
@@ -12,7 +12,7 @@ export const metadata = pageMetadata({
 
 export default async function ThankYouPage({ searchParams }: PageProps<'/thank-you'>) {
   const { package: slug } = await searchParams;
-  const pkg = typeof slug === 'string' ? getPackage(slug) : undefined;
+  const pkg = typeof slug === 'string' ? getBookable(slug) : undefined;
 
   return (
     <section className="relative overflow-hidden bg-navy-900 py-20 sm:py-28">
@@ -33,7 +33,16 @@ export default async function ThankYouPage({ searchParams }: PageProps<'/thank-y
           <WhatYouNeed dark />
         </div>
 
+        <div className="mx-auto mt-6 max-w-2xl rounded-3xl bg-teal-400 p-6 text-navy-900 sm:p-8">
+          <p className="text-xs font-bold uppercase tracking-[0.16em]">Refer a friend</p>
+          <h2 className="mt-2 text-2xl font-black">{referral.headline}</h2>
+          <p className="mt-2 leading-relaxed text-navy-800">
+            {referral.desc} Just have them mention your name when they book.
+          </p>
+        </div>
+
         <div className="mx-auto mt-10 grid max-w-2xl gap-4 sm:grid-cols-2">
+
           <a href={site.phone.href} className={button.primary}>
             <Icon name="phone" /> Questions? {site.phone.display}
           </a>
