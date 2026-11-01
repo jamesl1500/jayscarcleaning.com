@@ -40,7 +40,7 @@ const compare: { label: string; in: string[] }[] = [
   { label: 'Full interior vacuum', in: ['interior-detailing', 'full-detail'] },
   { label: 'Dash, console & vents', in: ['interior-detailing', 'full-detail'] },
   { label: 'Seat cleaning & conditioning', in: ['interior-detailing', 'full-detail'] },
-  { label: 'Floor mat shampoo', in: ['interior-detailing', 'full-detail'] },
+  { label: 'Carpet & mat stain treatment', in: ['interior-detailing', 'full-detail'] },
   { label: 'Glass inside & out', in: ['full-detail'] },
   { label: 'Exterior trim dressing', in: ['full-detail'] },
   { label: 'Engine bay wipe down', in: ['full-detail'] },

@@ -278,7 +278,7 @@ const interiorItems = [
   { title: 'Door Panels & Armrests', desc: 'Every door panel, pocket and armrest wiped down.' },
   { title: 'Interior Glass', desc: 'Streak-free treatment for all windows and the inside of the windshield.' },
   { title: 'Seat Cleaning & Conditioning', desc: 'Fabric or leather seats cleaned with the right product for the material.' },
-  { title: 'Floor Mat Shampoo & Extraction', desc: 'Mats removed, shampooed, scrubbed and extracted.' },
+  { title: 'Carpet & Mat Stain Treatment', desc: 'Carpets and floor mats deep vacuumed, with stains blotted out using a dedicated cleaner.' },
   { title: 'Air Vent Dusting', desc: 'Compressed air and detailing brushes clear dust from every vent.' },
 ];
 
@@ -334,16 +334,16 @@ const packageList: Package[] = [
     duration: '60–90 min',
     tagline: 'A deep-cleaned cabin that feels brand new.',
     summary:
-      'A top-to-bottom cabin refresh — vacuuming, wiping, shampooing and conditioning every surface so your interior looks and smells like new.',
+      'A top-to-bottom cabin refresh — deep vacuuming, wiping, spot-treating stains and conditioning every surface so your interior looks and smells like new.',
     seoTitle: 'Mobile Interior Car Detailing in Sheffield Lake, OH — $75',
     seoDescription:
-      'Interior car detailing in Sheffield Lake & Lorain County from $75. Full vacuum, dash & console, seats, floor mat shampoo, vents and glass — done in your driveway.',
+      'Interior car detailing in Sheffield Lake & Lorain County from $75. Full vacuum, dash & console, seats, carpet stain treatment, vents and glass — done in your driveway.',
     highlights: [
       'Full vacuum incl. trunk',
       'Dash, console & cup holders',
       'Door panels & armrests',
       'Seat cleaning & conditioning',
-      'Floor mat shampoo',
+      'Carpet & mat stain treatment',
       'Air vent dusting',
     ],
     included: [{ items: interiorItems }],

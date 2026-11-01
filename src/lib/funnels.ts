@@ -63,7 +63,7 @@ export const funnels: Funnel[] = [
     headline: 'Kids, pets, coffee spills?',
     highlight: 'Fresh interior from $75.',
     subhead:
-      'Full vacuum, seats, dash, console, vents, glass and floor mat shampoo — done in your driveway. Add Pet Hair Removal or Odor Elimination if you need it.',
+      'Full vacuum, seats, dash, console, vents, glass and carpet stain treatment — done in your driveway. Add Pet Hair Removal or Odor Elimination if you need it.',
     bullets: ['Every surface cleaned & conditioned', 'No water needed — just an outlet', 'Pet hair +$25 · Odor elimination +$20'],
     pains: [
       { title: 'Crumbs in every crevice', desc: 'We vacuum and detail the spots you can’t reach.' },
@@ -102,10 +102,10 @@ export const funnels: Funnel[] = [
     highlight: 'Winter reset from $75.',
     subhead:
       'An Interior Detail only needs an electrical outlet — no water — so we can do it all winter, even after your spigot is shut off. Got a garage? Even better.',
-    bullets: ['No water needed — just an outlet', 'Salt stains & floor mats extracted', 'Driveway or garage, 7 days a week'],
+    bullets: ['No water needed — just an outlet', 'Salt stains & floor mats treated', 'Driveway or garage, 7 days a week'],
     pains: [
-      { title: 'White salt lines on the carpet', desc: 'We shampoo and extract salt stains instead of just vacuuming over them.' },
-      { title: 'Mats that never dry out', desc: 'Floor mats pulled, scrubbed and extracted so the cabin stops smelling damp.' },
+      { title: 'White salt lines on the carpet', desc: 'We blot salt stains out with cleaner instead of just vacuuming over them.' },
+      { title: 'Mats caked in salt and grime', desc: 'Floor mats pulled, deep vacuumed and stain-treated.' },
       { title: 'Spigot already shut off', desc: 'No problem — interior work runs on an outlet alone.' },
     ],
     ctaLabel: 'Book My Winter Reset',
