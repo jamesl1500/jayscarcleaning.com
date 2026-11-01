@@ -26,12 +26,9 @@ export const funnels: Funnel[] = [
     highlight: 'without leaving home.',
     subhead:
       'We bring a full detailing setup to your driveway. Full Details from $120, hand washes from $50 — you provide water and an outlet, we handle everything else.',
-      'We bring a full detailing setup to your driveway. Full Details from $120, hand washes from $50 — you provide water and an outlet, we handle everything else.',
     bullets: ['Hand wash — never automatic brushes', 'Evening & weekend appointments', 'Confirmed within 24 hours'],
     pains: [
       { title: 'No more car wash lines', desc: 'Skip the drive, the wait and the swirl marks from tunnel brushes.' },
-      { title: 'Work around your schedule', desc: 'Open 7 days — weekdays until 10 PM and from 8 AM on weekends.' },
-      { title: 'Clear, upfront pricing', desc: 'Full Detail from $120, Interior from $75, Exterior from $50 by vehicle size — confirmed before we start.' },
       { title: 'Work around your schedule', desc: 'Open 7 days — weekdays until 10 PM and from 8 AM on weekends.' },
       { title: 'Clear, upfront pricing', desc: 'Full Detail from $120, Interior from $75, Exterior from $50 by vehicle size — confirmed before we start.' },
     ],
@@ -41,17 +38,13 @@ export const funnels: Funnel[] = [
     slug: 'full-detail',
     packageSlug: 'full-detail',
     metaTitle: 'Full Inside & Out Car Detail from $120 — Sheffield Lake Mobile Detailing',
-    metaTitle: 'Full Inside & Out Car Detail from $120 — Sheffield Lake Mobile Detailing',
     metaDescription:
-      'Complete inside-and-out mobile detail from $120 in Sheffield Lake and Lorain County. Hand wash, deep interior, glass, trim and engine bay — in your driveway.',
       'Complete inside-and-out mobile detail from $120 in Sheffield Lake and Lorain County. Hand wash, deep interior, glass, trim and engine bay — in your driveway.',
     eyebrow: 'Most Popular Package',
     headline: 'Inside and out,',
     highlight: 'showroom ready from $120.',
-    highlight: 'showroom ready from $120.',
     subhead:
       'Our Full Detail combines the hand wash and deep interior clean with glass, trim and engine bay finishing. Less than booking both separately.',
-    bullets: ['Everything inside & out in one visit', 'Save $5–$10 vs. booking separately', 'Final walkthrough with you'],
     bullets: ['Everything inside & out in one visit', 'Save $5–$10 vs. booking separately', 'Final walkthrough with you'],
     pains: [
       { title: 'Winter took its toll?', desc: 'Salt, slush and tracked-in mud — gone, inside and out.' },
@@ -64,9 +57,7 @@ export const funnels: Funnel[] = [
     slug: 'interior-detail',
     packageSlug: 'interior-detailing',
     metaTitle: 'Interior Car Detailing from $75 — Pet Hair, Spills & Odors | Sheffield Lake',
-    metaTitle: 'Interior Car Detailing from $75 — Pet Hair, Spills & Odors | Sheffield Lake',
     metaDescription:
-      'Kids, pets, coffee spills? Get a deep interior car detail in your driveway from $75 in Sheffield Lake and Lorain County. Pet hair & odor add-ons available.',
       'Kids, pets, coffee spills? Get a deep interior car detail in your driveway from $75 in Sheffield Lake and Lorain County. Pet hair & odor add-ons available.',
     eyebrow: 'Interior Detail',
     headline: 'Kids, pets, coffee spills?',
@@ -85,13 +76,10 @@ export const funnels: Funnel[] = [
     slug: 'exterior-wash',
     packageSlug: 'exterior-wash',
     metaTitle: 'Mobile Hand Car Wash from $50 — Sheffield Lake & Lorain County',
-    metaTitle: 'Mobile Hand Car Wash from $50 — Sheffield Lake & Lorain County',
     metaDescription:
-      'Professional hand car wash in your driveway from $50. Snow foam, two-bucket wash, wheels, tires and glass. Serving Sheffield Lake, Avon Lake, Lorain and nearby.',
       'Professional hand car wash in your driveway from $50. Snow foam, two-bucket wash, wheels, tires and glass. Serving Sheffield Lake, Avon Lake, Lorain and nearby.',
     eyebrow: 'Exterior Hand Wash',
     headline: 'A real hand wash,',
-    highlight: 'in your driveway from $50.',
     highlight: 'in your driveway from $50.',
     subhead:
       'Snow foam pre-rinse, two-bucket hand wash, wheels, tires, glass and door jambs. Safe for your paint — and a lot better than the tunnel wash.',
@@ -99,7 +87,6 @@ export const funnels: Funnel[] = [
     pains: [
       { title: 'Lake Erie salt & sand', desc: 'Snow foam lifts grit off before we touch the paint.' },
       { title: 'Swirl marks from tunnel washes', desc: 'Hand washed with clean microfiber — no brushes, ever.' },
-      { title: 'No time to wash it yourself', desc: 'We come to you 7 days a week, evenings included.' },
       { title: 'No time to wash it yourself', desc: 'We come to you 7 days a week, evenings included.' },
     ],
     ctaLabel: 'Book My Hand Wash',
