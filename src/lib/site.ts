@@ -2,174 +2,190 @@
 // email and the sitemap reads from here — update contact info in one place.
 
 export const site = {
-  name: 'Clean Lab Detailing',
-  url: 'https://www.cleanlabdetailing.com',
-  tagline: 'Mobile Car Detailing in Sheffield Lake & Lorain County',
+  name: "Clean Lab Detailing",
+  url: "https://www.cleanlabdetailing.com",
+  tagline: "Mobile Car Detailing in Sheffield Lake & Lorain County",
   description:
-    'Owner-done mobile car detailing in Sheffield Lake, OH and nearby Lorain County. Full details from $120, interiors from $75, hand washes from $50 — in your driveway. Call (216) 889-7822.',
-  positioning: 'Lab-precise detailing in your driveway — owner-done, evenings and weekends, Sheffield Lake to Westlake.',
-  owner: 'James Latten',
+    "Owner-done mobile car detailing in Sheffield Lake, OH and nearby Lorain County. Full details from $120, interiors from $75, hand washes from $50 — in your driveway. Call (216) 889-7822.",
+  positioning:
+    "Lab-precise detailing in your driveway — owner-done, evenings and weekends, Sheffield Lake to Westlake.",
+  owner: "James Latten",
   phone: {
-    display: '(216) 889-7822',
-    e164: '+12168897822',
-    href: 'tel:+12168897822',
+    display: "(216) 889-7822",
+    e164: "+12168897822",
+    href: "tel:+12168897822",
   },
   email: {
-    display: 'hello@jameslatten.com',
-    href: 'mailto:hello@jameslatten.com',
+    display: "hello@jameslatten.com",
+    href: "mailto:hello@jameslatten.com",
   },
   region: {
-    city: 'Sheffield Lake',
-    state: 'OH',
-    stateName: 'Ohio',
-    postalCode: '44054',
-    country: 'US',
-    county: 'Lorain County',
+    city: "Sheffield Lake",
+    state: "OH",
+    stateName: "Ohio",
+    postalCode: "44054",
+    country: "US",
+    county: "Lorain County",
   },
   // Centre of the service area (Sheffield Lake), used for structured data only.
   geo: { latitude: 41.4876, longitude: -82.1013 },
-  priceRange: '$50–$165',
-  lastUpdated: '2026-10-29',
+  priceRange: "$50–$165",
+  lastUpdated: "2026-11-02",
   // Google tag (gtag.js) IDs. One script load configures both.
-  gaId: 'G-BCQHR9YP2N',
-  adsId: 'AW-18488043490',
+  gaId: "G-BCQHR9YP2N",
+  adsId: "AW-18488043490",
   // Google Ads conversion labels — the part after the slash in a conversion's
   // `send_to` value ("AW-18488043490/<label>"), found in Google Ads under
   // Goals → Conversions → [conversion] → Tag setup. A conversion only fires
   // once its label is filled in.
   adsConversionLabels: {
-    booking: '',
-    call: '',
+    booking: "",
+    call: "",
   },
   // Shows a "Launch pricing" label next to prices. Turn off when prices step up
   // (plan: after 25 Google reviews, around March 2027).
   launchPricing: true,
   // Square Appointments booking page. While empty, the booking request form is
   // the only way to book. Once set, /contact leads with real-time booking.
-  squareBookingUrl: 'https://app.squareup.com/appointments/book/bazun26f4bn4qq/LJJRDW216PM58/start',
+  squareBookingUrl:
+    "https://app.squareup.com/appointments/book/bazun26f4bn4qq/LJJRDW216PM58/start",
   // Deposit Square takes at booking. 0 = none (Square charges after the job).
   // Match this to the Square Appointments payment settings.
   depositAmount: 25,
   // Square eGift Card purchase page. While empty, the Gift Cards page asks
   // buyers to call or email instead.
-  squareGiftCardUrl: 'https://app.squareup.com/gift/MLMCKENYCYVNX/order',
+  squareGiftCardUrl: "https://app.squareup.com/gift/MLMCKENYCYVNX/order",
   // Google Business Profile review link ("Ask for reviews" → copy link).
-  googleReviewUrl: '',
+  googleReviewUrl: "",
   // Social profiles. Empty ones are hidden from the footer and structured data.
   social: {
-    instagram: '',
-    tiktok: '',
-    facebook: '',
+    instagram: "",
+    tiktok: "",
+    facebook: "",
   },
   // Winter service note (outlet-only interiors, garage details). Turn off in April.
   winterServices: true,
 } as const;
 
 // Vehicle size tiers. Every package and plan is priced per tier.
-export type SizeTier = 'sedan' | 'suv' | 'truck';
+export type SizeTier = "sedan" | "suv" | "truck";
 
 export const sizeTiers: { id: SizeTier; name: string; desc: string }[] = [
-  { id: 'sedan', name: 'Sedan', desc: 'Cars, coupes & hatchbacks' },
-  { id: 'suv', name: 'SUV', desc: 'Crossovers & 2-row SUVs' },
-  { id: 'truck', name: 'Truck / Van', desc: '3-row SUVs, pickups, minivans & vans' },
+  { id: "sedan", name: "Sedan", desc: "Cars, coupes & hatchbacks" },
+  { id: "suv", name: "SUV", desc: "Crossovers & 2-row SUVs" },
+  {
+    id: "truck",
+    name: "Truck / Van",
+    desc: "3-row SUVs, pickups, minivans & vans",
+  },
 ];
 
 // What the booking form offers under "Vehicle type", and the tier each maps to.
 export const vehicleTypes: { label: string; tier: SizeTier }[] = [
-  { label: 'Sedan / Hatchback', tier: 'sedan' },
-  { label: 'Coupe / Sports Car', tier: 'sedan' },
-  { label: 'Convertible', tier: 'sedan' },
-  { label: 'Crossover / SUV (2 rows)', tier: 'suv' },
-  { label: 'SUV (3 rows)', tier: 'truck' },
-  { label: 'Pickup Truck', tier: 'truck' },
-  { label: 'Minivan / Van', tier: 'truck' },
+  { label: "Sedan / Hatchback", tier: "sedan" },
+  { label: "Coupe / Sports Car", tier: "sedan" },
+  { label: "Convertible", tier: "sedan" },
+  { label: "Crossover / SUV (2 rows)", tier: "suv" },
+  { label: "SUV (3 rows)", tier: "truck" },
+  { label: "Pickup Truck", tier: "truck" },
+  { label: "Minivan / Van", tier: "truck" },
 ];
 
-export const tierFor = (vehicle: string): SizeTier => vehicleTypes.find((v) => v.label === vehicle)?.tier ?? 'sedan';
+export const tierFor = (vehicle: string): SizeTier =>
+  vehicleTypes.find((v) => v.label === vehicle)?.tier ?? "sedan";
 
 // "How did you hear about us?" options on the booking form.
 export const leadSources = [
-  'Google search',
-  'Google Maps',
-  'Facebook',
-  'Instagram',
-  'TikTok',
-  'Nextdoor',
-  'Saw you working in my neighborhood',
-  'Door hanger or flyer',
-  'Friend or family referral',
-  'Gift card',
-  'Returning customer',
-  'Other',
+  "Google search",
+  "Google Maps",
+  "Facebook",
+  "Instagram",
+  "TikTok",
+  "Nextdoor",
+  "Saw you working in my neighborhood",
+  "Door hanger or flyer",
+  "Friend or family referral",
+  "Gift card",
+  "Returning customer",
+  "Other",
 ];
 
 export const referral = {
   amount: 15,
-  headline: 'Give $15, get $15',
-  desc: 'Send a friend our way. They get $15 off their first detail, and you get $15 off your next one when they book.',
+  headline: "Give $15, get $15",
+  desc: "Send a friend our way. They get $15 off their first detail, and you get $15 off your next one when they book.",
 };
 
 // What the customer needs to provide. Shown on every service, area and funnel
 // page, in the FAQ, on the booking form and in the confirmation email.
 export const requirements = {
-  headline: 'All we need from you: water and electricity.',
+  headline: "All we need from you: water and electricity.",
   items: [
     {
-      id: 'water',
-      title: 'A water source',
-      desc: 'An outdoor spigot (hose bib) within reach of where your car is parked.',
+      id: "water",
+      title: "A water source",
+      desc: "An outdoor spigot (hose bib) within reach of where your car is parked.",
     },
     {
-      id: 'power',
-      title: 'An electrical outlet',
-      desc: 'A standard outdoor or garage outlet we can plug into for our vacuums and tools.',
+      id: "power",
+      title: "An electrical outlet",
+      desc: "A standard outdoor or garage outlet we can plug into for our vacuums and tools.",
     },
   ],
-  weBring: 'We bring everything else — all of the equipment, products and towels needed to detail your car.',
+  weBring:
+    "We bring everything else — all of the equipment, products and towels needed to detail your car.",
   // Interior-only jobs don't use water, which keeps them bookable all winter.
-  interiorOnly: 'Booking an Interior Detail? We only need the outlet — no water.',
+  interiorOnly:
+    "Booking an Interior Detail? We only need the outlet — no water.",
 };
 
 // Winter menu (Nov–Apr), shown while site.winterServices is on.
 export const winterServices = {
-  headline: 'Detailing all winter long',
-  intro: 'Spigot shut off for the season? Too cold for a wash? Here’s what we can still do.',
+  headline: "Detailing all winter long",
+  intro:
+    "Spigot shut off for the season? Too cold for a wash? Here’s what we can still do.",
   items: [
     {
-      title: 'Interior Details need only an outlet',
-      desc: 'No water required, so interiors run all winter — salt stains, slushy mats and all.',
+      title: "Interior Details need only an outlet",
+      desc: "No water required, so interiors run all winter — salt stains, slushy mats and all.",
     },
     {
-      title: 'Garage details',
-      desc: 'Have a heated or attached garage? We can do any package inside it.',
+      title: "Garage details",
+      desc: "Have a heated or attached garage? We can do any package inside it.",
     },
     {
-      title: 'Winter Interior Reset',
-      desc: 'Our Interior Detail focused on salt-stained carpets, soaked floor mats and tracked-in grime.',
+      title: "Winter Interior Reset",
+      desc: "Our Interior Detail focused on salt-stained carpets, soaked floor mats and tracked-in grime.",
     },
     {
-      title: 'Rinseless exterior wash',
-      desc: 'On days above freezing we bring warm water for a rinseless wash that lifts salt and road grime.',
+      title: "Rinseless exterior wash",
+      desc: "On days above freezing we bring warm water for a rinseless wash that lifts salt and road grime.",
     },
   ],
 };
 
-export type Hours = { label: string; days: string[]; opens: string; closes: string; display: string };
+export type Hours = {
+  label: string;
+  days: string[];
+  opens: string;
+  closes: string;
+  display: string;
+};
 
 export const hours: Hours[] = [
   {
-    label: 'Monday – Friday',
-    days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '10:00',
-    closes: '22:00',
-    display: '10:00 AM – 10:00 PM',
+    label: "Monday – Friday",
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "17:00",
+    closes: "22:00",
+    display: "5:00 PM – 10:00 PM",
   },
   {
-    label: 'Saturday – Sunday',
-    days: ['Saturday', 'Sunday'],
-    opens: '08:00',
-    closes: '22:00',
-    display: '8:00 AM – 10:00 PM',
+    label: "Saturday – Sunday",
+    days: ["Saturday", "Sunday"],
+    opens: "08:00",
+    closes: "20:00",
+    display: "8:00 AM – 8:00 PM",
   },
 ];
 
@@ -182,59 +198,59 @@ export type Addon = {
 
 export const addons: Addon[] = [
   {
-    id: 'engine-bay',
-    name: 'Engine Bay Cleaning',
+    id: "engine-bay",
+    name: "Engine Bay Cleaning",
     price: 30,
-    desc: 'Degreasing and detailing of the engine compartment for a clean, protected engine bay.',
+    desc: "Degreasing and detailing of the engine compartment for a clean, protected engine bay.",
   },
   {
-    id: 'pet-hair',
-    name: 'Pet Hair Removal',
+    id: "pet-hair",
+    name: "Pet Hair Removal",
     price: 25,
-    desc: 'Specialized tools and techniques to pull stubborn pet hair out of upholstery and carpet.',
+    desc: "Specialized tools and techniques to pull stubborn pet hair out of upholstery and carpet.",
   },
   {
-    id: 'odor',
-    name: 'Odor Elimination',
+    id: "odor",
+    name: "Odor Elimination",
     price: 20,
-    desc: 'Enzyme-based treatment that neutralizes smoke, food and pet odors at the source.',
+    desc: "Enzyme-based treatment that neutralizes smoke, food and pet odors at the source.",
   },
   {
-    id: 'ceramic-spray',
-    name: 'Ceramic Coating Spray',
+    id: "ceramic-spray",
+    name: "Ceramic Coating Spray",
     price: 40,
-    desc: 'A ceramic spray sealant that adds gloss and hydrophobic protection to your paint.',
+    desc: "A ceramic spray sealant that adds gloss and hydrophobic protection to your paint.",
   },
   {
-    id: 'headlights',
-    name: 'Headlight Restoration',
+    id: "headlights",
+    name: "Headlight Restoration",
     price: 35,
-    desc: 'Wet sanding and polishing to bring cloudy or yellowed headlights back to clear.',
+    desc: "Wet sanding and polishing to bring cloudy or yellowed headlights back to clear.",
   },
   {
-    id: 'clay-bar',
-    name: 'Clay Bar Treatment',
+    id: "clay-bar",
+    name: "Clay Bar Treatment",
     price: 30,
-    desc: 'Deep paint decontamination that removes bonded grit for a smooth, glass-like finish.',
+    desc: "Deep paint decontamination that removes bonded grit for a smooth, glass-like finish.",
   },
   {
-    id: 'leather',
-    name: 'Leather Conditioning',
+    id: "leather",
+    name: "Leather Conditioning",
     price: 25,
-    desc: 'Premium cleaner and conditioner that keeps leather supple and helps prevent cracking.',
+    desc: "Premium cleaner and conditioner that keeps leather supple and helps prevent cracking.",
   },
   {
-    id: 'ppf-spot',
-    name: 'Paint Protection Film Spot',
+    id: "ppf-spot",
+    name: "Paint Protection Film Spot",
     price: 50,
-    desc: 'Spot PPF on high-impact areas like the leading edge of the hood or front bumper.',
+    desc: "Spot PPF on high-impact areas like the leading edge of the hood or front bumper.",
   },
 ];
 
 export type Faq = { q: string; a: string };
 
 const waterPowerFaq: Faq = {
-  q: 'What do I need to provide?',
+  q: "What do I need to provide?",
   a: `Just two things: a water source (an outdoor spigot near where the car is parked) and an electrical outlet we can plug into. That's all — we bring everything else. Booking an Interior Detail? Then we only need the outlet.`,
 };
 
@@ -261,164 +277,243 @@ export type Package = {
 };
 
 const exteriorItems = [
-  { title: 'Pre-Rinse & Snow Foam', desc: 'A thorough pre-soak loosens dirt, salt and road film before anything touches the paint.' },
-  { title: 'Two-Bucket Hand Wash', desc: 'pH-neutral shampoo and the two-bucket method to keep grit off your paint and prevent swirl marks.' },
-  { title: 'Wheel & Rim Deep Clean', desc: 'Dedicated wheel cleaner and brushes to break down brake dust and buildup.' },
-  { title: 'Tire Dressing & Shine', desc: 'Sling-free dressing for a rich, dark, long-lasting finish.' },
-  { title: 'Exterior Glass', desc: 'Streak-free cleaner on all exterior windows and mirrors.' },
-  { title: 'Door Jamb Wipe Down', desc: 'All door jambs cleaned — the spot most quick washes skip.' },
-  { title: 'Bug & Tar Removal', desc: 'Targeted treatment for bug splatter and road tar deposits.' },
-  { title: 'Final Rinse & Microfiber Dry', desc: 'Plush microfiber drying to prevent water spots.' },
+  {
+    title: "Pre-Rinse & Snow Foam",
+    desc: "A thorough pre-soak loosens dirt, salt and road film before anything touches the paint.",
+  },
+  {
+    title: "Two-Bucket Hand Wash",
+    desc: "pH-neutral shampoo and the two-bucket method to keep grit off your paint and prevent swirl marks.",
+  },
+  {
+    title: "Wheel & Rim Deep Clean",
+    desc: "Dedicated wheel cleaner and brushes to break down brake dust and buildup.",
+  },
+  {
+    title: "Tire Dressing & Shine",
+    desc: "Sling-free dressing for a rich, dark, long-lasting finish.",
+  },
+  {
+    title: "Exterior Glass",
+    desc: "Streak-free cleaner on all exterior windows and mirrors.",
+  },
+  {
+    title: "Door Jamb Wipe Down",
+    desc: "All door jambs cleaned — the spot most quick washes skip.",
+  },
+  {
+    title: "Bug & Tar Removal",
+    desc: "Targeted treatment for bug splatter and road tar deposits.",
+  },
+  {
+    title: "Final Rinse & Microfiber Dry",
+    desc: "Plush microfiber drying to prevent water spots.",
+  },
 ];
 
 const interiorItems = [
-  { title: 'Full Interior Vacuum', desc: 'Seats, carpets, trunk and the hard-to-reach crevices between them.' },
-  { title: 'Dashboard & Instrument Cluster', desc: 'Dust and wipe down the dash, gauges and every control surface.' },
-  { title: 'Center Console & Cup Holders', desc: 'Deep clean of the console, cup holders and storage compartments.' },
-  { title: 'Door Panels & Armrests', desc: 'Every door panel, pocket and armrest wiped down.' },
-  { title: 'Interior Glass', desc: 'Streak-free treatment for all windows and the inside of the windshield.' },
-  { title: 'Seat Cleaning & Conditioning', desc: 'Fabric or leather seats cleaned with the right product for the material.' },
-  { title: 'Carpet & Mat Stain Treatment', desc: 'Carpets and floor mats deep vacuumed, with stains blotted out using a dedicated cleaner.' },
-  { title: 'Air Vent Dusting', desc: 'Compressed air and detailing brushes clear dust from every vent.' },
+  {
+    title: "Full Interior Vacuum",
+    desc: "Seats, carpets, trunk and the hard-to-reach crevices between them.",
+  },
+  {
+    title: "Dashboard & Instrument Cluster",
+    desc: "Dust and wipe down the dash, gauges and every control surface.",
+  },
+  {
+    title: "Center Console & Cup Holders",
+    desc: "Deep clean of the console, cup holders and storage compartments.",
+  },
+  {
+    title: "Door Panels & Armrests",
+    desc: "Every door panel, pocket and armrest wiped down.",
+  },
+  {
+    title: "Interior Glass",
+    desc: "Streak-free treatment for all windows and the inside of the windshield.",
+  },
+  {
+    title: "Seat Cleaning & Conditioning",
+    desc: "Fabric or leather seats cleaned with the right product for the material.",
+  },
+  {
+    title: "Carpet & Mat Stain Treatment",
+    desc: "Carpets and floor mats deep vacuumed, with stains blotted out using a dedicated cleaner.",
+  },
+  {
+    title: "Air Vent Dusting",
+    desc: "Compressed air and detailing brushes clear dust from every vent.",
+  },
 ];
 
 const packageList: Package[] = [
   {
-    slug: 'exterior-wash',
-    number: '03',
-    name: 'Exterior Wash',
+    slug: "exterior-wash",
+    number: "03",
+    name: "Exterior Wash",
     price: 50,
     prices: { sedan: 50, suv: 60, truck: 70 },
     needsWater: true,
-    duration: '45–60 min',
-    tagline: 'A spotless exterior, bumper to bumper.',
+    duration: "45–60 min",
+    tagline: "A spotless exterior, bumper to bumper.",
     summary:
-      'A meticulous hand wash that strips away road grime, salt and contaminants using pH-neutral shampoo and the two-bucket method for a scratch-free finish.',
-    seoTitle: 'Mobile Exterior Car Wash in Sheffield Lake, OH — $50',
+      "A meticulous hand wash that strips away road grime, salt and contaminants using pH-neutral shampoo and the two-bucket method for a scratch-free finish.",
+    seoTitle: "Mobile Exterior Car Wash in Sheffield Lake, OH — $50",
     seoDescription:
-      'Mobile hand car wash in Sheffield Lake, Avon Lake & Lorain County from $50. Snow foam, two-bucket wash, wheels, tires, glass and bug & tar removal in your driveway.',
+      "Mobile hand car wash in Sheffield Lake, Avon Lake & Lorain County from $50. Snow foam, two-bucket wash, wheels, tires, glass and bug & tar removal in your driveway.",
     highlights: [
-      'Snow foam pre-rinse',
-      'Two-bucket hand wash',
-      'Wheels, rims & tire shine',
-      'Streak-free exterior glass',
-      'Door jambs wiped down',
-      'Bug & tar removal',
+      "Snow foam pre-rinse",
+      "Two-bucket hand wash",
+      "Wheels, rims & tire shine",
+      "Streak-free exterior glass",
+      "Door jambs wiped down",
+      "Bug & tar removal",
     ],
     included: [{ items: exteriorItems }],
-    recommendedAddons: ['clay-bar', 'ceramic-spray', 'headlights'],
+    recommendedAddons: ["clay-bar", "ceramic-spray", "headlights"],
     idealFor: [
-      'Regular maintenance washes between full details',
-      'Clearing winter road salt and lakeshore grime',
-      'Getting a car ready for photos or a sale',
+      "Regular maintenance washes between full details",
+      "Clearing winter road salt and lakeshore grime",
+      "Getting a car ready for photos or a sale",
     ],
     faqs: [
       {
-        q: 'Do you hand wash or use brushes?',
-        a: 'Every exterior wash is done by hand using pH-neutral shampoo, the two-bucket method and clean microfiber — no automatic brushes that can scratch your paint.',
+        q: "Do you hand wash or use brushes?",
+        a: "Every exterior wash is done by hand using pH-neutral shampoo, the two-bucket method and clean microfiber — no automatic brushes that can scratch your paint.",
       },
       waterPowerFaq,
       {
-        q: 'Can you remove road salt?',
-        a: 'Yes. The snow foam pre-rinse and wheel cleaning are designed to loosen and lift salt and road film — important for cars that sit near the lake or drive I-90 and Route 2 all winter.',
+        q: "Can you remove road salt?",
+        a: "Yes. The snow foam pre-rinse and wheel cleaning are designed to loosen and lift salt and road film — important for cars that sit near the lake or drive I-90 and Route 2 all winter.",
       },
     ],
   },
   {
-    slug: 'interior-detailing',
-    number: '02',
-    name: 'Interior Detail',
+    slug: "interior-detailing",
+    number: "02",
+    name: "Interior Detail",
     price: 75,
     prices: { sedan: 75, suv: 90, truck: 105 },
     needsWater: false,
-    duration: '60–90 min',
-    tagline: 'A deep-cleaned cabin that feels brand new.',
+    duration: "60–90 min",
+    tagline: "A deep-cleaned cabin that feels brand new.",
     summary:
-      'A top-to-bottom cabin refresh — deep vacuuming, wiping, spot-treating stains and conditioning every surface so your interior looks and smells like new.',
-    seoTitle: 'Mobile Interior Car Detailing in Sheffield Lake, OH — $75',
+      "A top-to-bottom cabin refresh — deep vacuuming, wiping, spot-treating stains and conditioning every surface so your interior looks and smells like new.",
+    seoTitle: "Mobile Interior Car Detailing in Sheffield Lake, OH — $75",
     seoDescription:
-      'Interior car detailing in Sheffield Lake & Lorain County from $75. Full vacuum, dash & console, seats, carpet stain treatment, vents and glass — done in your driveway.',
+      "Interior car detailing in Sheffield Lake & Lorain County from $75. Full vacuum, dash & console, seats, carpet stain treatment, vents and glass — done in your driveway.",
     highlights: [
-      'Full vacuum incl. trunk',
-      'Dash, console & cup holders',
-      'Door panels & armrests',
-      'Seat cleaning & conditioning',
-      'Carpet & mat stain treatment',
-      'Air vent dusting',
+      "Full vacuum incl. trunk",
+      "Dash, console & cup holders",
+      "Door panels & armrests",
+      "Seat cleaning & conditioning",
+      "Carpet & mat stain treatment",
+      "Air vent dusting",
     ],
     included: [{ items: interiorItems }],
-    recommendedAddons: ['pet-hair', 'odor', 'leather'],
+    recommendedAddons: ["pet-hair", "odor", "leather"],
     idealFor: [
-      'Families with kids and daily commuters',
-      'Pet owners (pair with Pet Hair Removal)',
-      'Refreshing a used car you just bought',
+      "Families with kids and daily commuters",
+      "Pet owners (pair with Pet Hair Removal)",
+      "Refreshing a used car you just bought",
     ],
     faqs: [
       {
-        q: 'Do you need water for an Interior Detail?',
-        a: 'No. An Interior Detail only needs an electrical outlet, so we can do it all winter — even after your outdoor spigot is shut off.',
+        q: "Do you need water for an Interior Detail?",
+        a: "No. An Interior Detail only needs an electrical outlet, so we can do it all winter — even after your outdoor spigot is shut off.",
       },
       {
-        q: 'Can you get pet hair out?',
-        a: 'Standard vacuuming removes loose hair. For hair that is woven into carpet and upholstery, add Pet Hair Removal (+$25) and we use specialized tools to pull it out.',
+        q: "Can you get pet hair out?",
+        a: "Standard vacuuming removes loose hair. For hair that is woven into carpet and upholstery, add Pet Hair Removal (+$25) and we use specialized tools to pull it out.",
       },
       {
-        q: 'Can you remove smoke or food odors?',
-        a: 'Yes — add Odor Elimination (+$20), an enzyme-based treatment that neutralizes odors at the source instead of masking them.',
+        q: "Can you remove smoke or food odors?",
+        a: "Yes — add Odor Elimination (+$20), an enzyme-based treatment that neutralizes odors at the source instead of masking them.",
       },
       waterPowerFaq,
     ],
   },
   {
-    slug: 'full-detail',
-    number: '01',
-    name: 'Full Detail',
+    slug: "full-detail",
+    number: "01",
+    name: "Full Detail",
     price: 120,
     prices: { sedan: 120, suv: 145, truck: 165 },
     needsWater: true,
-    duration: '2–3 hours',
-    tagline: 'The complete package — showroom ready.',
+    duration: "2–3 hours",
+    tagline: "The complete package — showroom ready.",
     summary:
-      'Every inch of your vehicle, inside and out. The full exterior wash and interior detail combined, plus premium finishing touches — and it costs less than booking both separately.',
-    seoTitle: 'Full Mobile Car Detail in Sheffield Lake, OH — $120',
+      "Every inch of your vehicle, inside and out. The full exterior wash and interior detail combined, plus premium finishing touches — and it costs less than booking both separately.",
+    seoTitle: "Full Mobile Car Detail in Sheffield Lake, OH — $120",
     seoDescription:
-      'Complete inside-and-out mobile car detailing in Sheffield Lake, Avon Lake & Lorain County for $120. Hand wash, deep interior, glass, trim and engine bay.',
+      "Complete inside-and-out mobile car detailing in Sheffield Lake, Avon Lake & Lorain County for $120. Hand wash, deep interior, glass, trim and engine bay.",
     highlights: [
-      'Everything in Exterior Wash',
-      'Everything in Interior Detail',
-      'Full glass inside & out',
-      'Exterior trim dressing',
-      'Engine bay wipe down',
-      'Final walkthrough with you',
+      "Everything in Exterior Wash",
+      "Everything in Interior Detail",
+      "Full glass inside & out",
+      "Exterior trim dressing",
+      "Engine bay wipe down",
+      "Final walkthrough with you",
     ],
     included: [
-      { section: 'Exterior', items: exteriorItems.slice(0, 7) },
-      { section: 'Interior', items: [interiorItems[0], interiorItems[1], interiorItems[5], interiorItems[6], interiorItems[7]] },
+      { section: "Exterior", items: exteriorItems.slice(0, 7) },
       {
-        section: 'Premium Finishing',
+        section: "Interior",
         items: [
-          { title: 'Full Glass Treatment', desc: 'Streak-free cleaner on every interior and exterior glass surface.' },
-          { title: 'Exterior Trim Dressing', desc: 'Plastic and rubber trim dressed and protected.' },
-          { title: 'Engine Bay Wipe Down', desc: 'Accessible engine bay surfaces wiped and degreased.' },
-          { title: 'Air Freshener', desc: 'Long-lasting premium air freshener for the cabin.' },
-          { title: 'Final Walkthrough', desc: 'We walk through the finished car with you before we leave.' },
+          interiorItems[0],
+          interiorItems[1],
+          interiorItems[5],
+          interiorItems[6],
+          interiorItems[7],
+        ],
+      },
+      {
+        section: "Premium Finishing",
+        items: [
+          {
+            title: "Full Glass Treatment",
+            desc: "Streak-free cleaner on every interior and exterior glass surface.",
+          },
+          {
+            title: "Exterior Trim Dressing",
+            desc: "Plastic and rubber trim dressed and protected.",
+          },
+          {
+            title: "Engine Bay Wipe Down",
+            desc: "Accessible engine bay surfaces wiped and degreased.",
+          },
+          {
+            title: "Air Freshener",
+            desc: "Long-lasting premium air freshener for the cabin.",
+          },
+          {
+            title: "Final Walkthrough",
+            desc: "We walk through the finished car with you before we leave.",
+          },
         ],
       },
     ],
-    recommendedAddons: ['ceramic-spray', 'clay-bar', 'pet-hair', 'odor', 'leather', 'headlights'],
+    recommendedAddons: [
+      "ceramic-spray",
+      "clay-bar",
+      "pet-hair",
+      "odor",
+      "leather",
+      "headlights",
+    ],
     idealFor: [
-      'Seasonal deep cleans (spring and fall)',
-      'Preparing a car to sell or trade in',
-      'A gift for someone who never has time',
+      "Seasonal deep cleans (spring and fall)",
+      "Preparing a car to sell or trade in",
+      "A gift for someone who never has time",
     ],
     faqs: [
       {
-        q: 'How is the Full Detail different from booking both packages?',
-        a: 'You get everything in the Exterior Wash and Interior Detail, plus full glass, trim dressing, an engine bay wipe down and a final walkthrough — and it costs $5–$10 less than booking both separately, depending on vehicle size.',
+        q: "How is the Full Detail different from booking both packages?",
+        a: "You get everything in the Exterior Wash and Interior Detail, plus full glass, trim dressing, an engine bay wipe down and a final walkthrough — and it costs $5–$10 less than booking both separately, depending on vehicle size.",
       },
       {
-        q: 'How long does a Full Detail take?',
-        a: 'Most vehicles take 2–3 hours. Larger SUVs, trucks and heavily soiled interiors can take longer; we give you a time estimate when we confirm your booking.',
+        q: "How long does a Full Detail take?",
+        a: "Most vehicles take 2–3 hours. Larger SUVs, trucks and heavily soiled interiors can take longer; we give you a time estimate when we confirm your booking.",
       },
       waterPowerFaq,
     ],
@@ -427,9 +522,12 @@ const packageList: Package[] = [
 ];
 
 // Full Detail leads everywhere packages are listed; the wash is the entry point.
-export const packages = [...packageList].sort((a, b) => a.number.localeCompare(b.number));
+export const packages = [...packageList].sort((a, b) =>
+  a.number.localeCompare(b.number),
+);
 
-export const getPackage = (slug: string) => packages.find((p) => p.slug === slug);
+export const getPackage = (slug: string) =>
+  packages.find((p) => p.slug === slug);
 
 // Lowest and highest price a package (or plan) can cost across size tiers.
 export const priceRange = (prices: Record<SizeTier, number>) => {
@@ -449,36 +547,77 @@ export type Plan = {
 };
 
 export const plans: Plan[] = [
-  { slug: 'plan-biweekly', name: 'Every-Other-Week Wash Plan', cadence: 'every 2 weeks', prices: { sedan: 40, suv: 50, truck: 60 } },
-  { slug: 'plan-monthly', name: 'Monthly Wash Plan', cadence: 'once a month', prices: { sedan: 45, suv: 55, truck: 65 } },
+  {
+    slug: "plan-biweekly",
+    name: "Every-Other-Week Wash Plan",
+    cadence: "every 2 weeks",
+    prices: { sedan: 40, suv: 50, truck: 60 },
+  },
+  {
+    slug: "plan-monthly",
+    name: "Monthly Wash Plan",
+    cadence: "once a month",
+    prices: { sedan: 45, suv: 55, truck: 65 },
+  },
 ];
 
 export const planPerks = [
-  'Full Exterior Wash every visit — hand wash, wheels, tires, glass and door jambs',
-  'First pick of time slots, before the calendar opens to new bookings',
-  'Same day and time each visit, so you never have to rebook',
-  'Pause or cancel any time before your next visit',
+  "Full Exterior Wash every visit — hand wash, wheels, tires, glass and door jambs",
+  "First pick of time slots, before the calendar opens to new bookings",
+  "Same day and time each visit, so you never have to rebook",
+  "Pause or cancel any time before your next visit",
 ];
 
 // Anything the booking form can book: a package or a maintenance plan.
-export type Bookable = { slug: string; name: string; prices: Record<SizeTier, number>; needsWater: boolean; detail: string };
+export type Bookable = {
+  slug: string;
+  name: string;
+  prices: Record<SizeTier, number>;
+  needsWater: boolean;
+  detail: string;
+};
 
 export const bookables: Bookable[] = [
-  ...packages.map((p) => ({ slug: p.slug, name: p.name, prices: p.prices, needsWater: p.needsWater, detail: p.duration })),
-  ...plans.map((p) => ({ slug: p.slug, name: p.name, prices: p.prices, needsWater: true, detail: `per visit, ${p.cadence}` })),
+  ...packages.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    prices: p.prices,
+    needsWater: p.needsWater,
+    detail: p.duration,
+  })),
+  ...plans.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    prices: p.prices,
+    needsWater: true,
+    detail: `per visit, ${p.cadence}`,
+  })),
 ];
 
-export const getBookable = (slug: string) => bookables.find((b) => b.slug === slug);
+export const getBookable = (slug: string) =>
+  bookables.find((b) => b.slug === slug);
 
 // Customer reviews. Paste real ones in here (ideally copied from Google with
 // the customer's first name and town). The section stays hidden while empty.
-export type Review = { name: string; town: string; text: string; rating: 1 | 2 | 3 | 4 | 5; packageSlug?: string };
+export type Review = {
+  name: string;
+  town: string;
+  text: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+  packageSlug?: string;
+};
 
 export const reviews: Review[] = [];
 
 // Before/after photos. Put both images in /public/gallery and add an entry.
 // The gallery stays hidden while empty; town names should match serviceAreas.
-export type GalleryItem = { before: string; after: string; town: string; vehicle: string; packageSlug: string };
+export type GalleryItem = {
+  before: string;
+  after: string;
+  town: string;
+  vehicle: string;
+  packageSlug: string;
+};
 
 export const gallery: GalleryItem[] = [];
 export const getAddon = (id: string) => addons.find((a) => a.id === id);
@@ -498,164 +637,166 @@ export type ServiceArea = {
 
 export const serviceAreas: ServiceArea[] = [
   {
-    slug: 'sheffield-lake',
-    name: 'Sheffield Lake',
-    county: 'Lorain County',
-    zips: ['44054'],
+    slug: "sheffield-lake",
+    name: "Sheffield Lake",
+    county: "Lorain County",
+    zips: ["44054"],
     homeBase: true,
     blurb:
-      'Sheffield Lake is our home base, so local appointments are the easiest to fit in — including weekday evenings after work and early weekend mornings.',
+      "Sheffield Lake is our home base, so local appointments are the easiest to fit in — including weekday evenings after work and early weekend mornings.",
     localNote:
-      'Living right on Lake Erie means your paint takes a beating from wind-blown sand, gull droppings and winter salt spray. Regular hand washes and a ceramic spray top-up keep that grime from etching into the clear coat.',
-    nearby: ['sheffield-village', 'avon-lake', 'lorain'],
+      "Living right on Lake Erie means your paint takes a beating from wind-blown sand, gull droppings and winter salt spray. Regular hand washes and a ceramic spray top-up keep that grime from etching into the clear coat.",
+    nearby: ["sheffield-village", "avon-lake", "lorain"],
   },
   {
-    slug: 'sheffield-village',
-    name: 'Sheffield Village',
-    county: 'Lorain County',
-    zips: ['44054'],
+    slug: "sheffield-village",
+    name: "Sheffield Village",
+    county: "Lorain County",
+    zips: ["44054"],
     blurb:
-      'Just south of Sheffield Lake, Sheffield Village is minutes from us — book an evening or weekend detail right in your driveway.',
+      "Just south of Sheffield Lake, Sheffield Village is minutes from us — book an evening or weekend detail right in your driveway.",
     localNote:
-      'Commuting on Route 2, Detroit Road or Abbe Road leaves brake dust and road film on wheels and lower panels. Our wheel deep-clean and two-bucket wash remove it safely.',
-    nearby: ['sheffield-lake', 'avon', 'elyria'],
+      "Commuting on Route 2, Detroit Road or Abbe Road leaves brake dust and road film on wheels and lower panels. Our wheel deep-clean and two-bucket wash remove it safely.",
+    nearby: ["sheffield-lake", "avon", "elyria"],
   },
   {
-    slug: 'avon-lake',
-    name: 'Avon Lake',
-    county: 'Lorain County',
-    zips: ['44012'],
+    slug: "avon-lake",
+    name: "Avon Lake",
+    county: "Lorain County",
+    zips: ["44012"],
     blurb:
-      'Our neighbors to the east. We detail cars across Avon Lake, from the lakefront streets to the neighborhoods off Walker Road.',
+      "Our neighbors to the east. We detail cars across Avon Lake, from the lakefront streets to the neighborhoods off Walker Road.",
     localNote:
-      'Lake-effect snow means months of salt on Avon Lake roads. A spring Full Detail — wash, deep interior and trim dressing — resets your car after winter.',
-    nearby: ['sheffield-lake', 'avon', 'bay-village'],
+      "Lake-effect snow means months of salt on Avon Lake roads. A spring Full Detail — wash, deep interior and trim dressing — resets your car after winter.",
+    nearby: ["sheffield-lake", "avon", "bay-village"],
   },
   {
-    slug: 'lorain',
-    name: 'Lorain',
-    county: 'Lorain County',
-    zips: ['44052', '44053', '44055'],
+    slug: "lorain",
+    name: "Lorain",
+    county: "Lorain County",
+    zips: ["44052", "44053", "44055"],
     blurb:
-      'Mobile car detailing throughout Lorain — we come to your home so you never have to wait at a car wash on Route 58 or Leavitt Road.',
+      "Mobile car detailing throughout Lorain — we come to your home so you never have to wait at a car wash on Route 58 or Leavitt Road.",
     localNote:
-      'Salt, sand and lakeshore wind are tough on Lorain vehicles. Our snow-foam pre-rinse lifts grit off the paint before we ever touch it, so the wash doesn’t grind it in.',
-    nearby: ['sheffield-lake', 'amherst', 'elyria'],
+      "Salt, sand and lakeshore wind are tough on Lorain vehicles. Our snow-foam pre-rinse lifts grit off the paint before we ever touch it, so the wash doesn’t grind it in.",
+    nearby: ["sheffield-lake", "amherst", "elyria"],
   },
   {
-    slug: 'avon',
-    name: 'Avon',
-    county: 'Lorain County',
-    zips: ['44011'],
+    slug: "avon",
+    name: "Avon",
+    county: "Lorain County",
+    zips: ["44011"],
     blurb:
-      'Busy Avon schedules are why we work evenings and weekends. Book a detail at home and your car is done before you need it next.',
+      "Busy Avon schedules are why we work evenings and weekends. Book a detail at home and your car is done before you need it next.",
     localNote:
-      'Plenty of Avon families run SUVs and minivans that see daily kid and pet duty. An Interior Detail with Pet Hair Removal or Odor Elimination brings the cabin back to fresh.',
-    nearby: ['avon-lake', 'sheffield-village', 'north-ridgeville'],
+      "Plenty of Avon families run SUVs and minivans that see daily kid and pet duty. An Interior Detail with Pet Hair Removal or Odor Elimination brings the cabin back to fresh.",
+    nearby: ["avon-lake", "sheffield-village", "north-ridgeville"],
   },
   {
-    slug: 'elyria',
-    name: 'Elyria',
-    county: 'Lorain County',
-    zips: ['44035', '44036'],
+    slug: "elyria",
+    name: "Elyria",
+    county: "Lorain County",
+    zips: ["44035", "44036"],
     blurb:
-      'Professional mobile detailing for Elyria homes — hand washes, interior details and full details without leaving your driveway.',
+      "Professional mobile detailing for Elyria homes — hand washes, interior details and full details without leaving your driveway.",
     localNote:
-      'Between I-80, Route 57 and the daily commute, Elyria cars collect brake dust and road film fast. Regular exterior washes with wheel deep-cleaning keep rims from pitting.',
-    nearby: ['sheffield-village', 'north-ridgeville', 'amherst'],
+      "Between I-80, Route 57 and the daily commute, Elyria cars collect brake dust and road film fast. Regular exterior washes with wheel deep-cleaning keep rims from pitting.",
+    nearby: ["sheffield-village", "north-ridgeville", "amherst"],
   },
   {
-    slug: 'north-ridgeville',
-    name: 'North Ridgeville',
-    county: 'Lorain County',
-    zips: ['44039'],
+    slug: "north-ridgeville",
+    name: "North Ridgeville",
+    county: "Lorain County",
+    zips: ["44039"],
     blurb:
-      'From Center Ridge Road to the newer subdivisions, we bring our detailing setup to North Ridgeville driveways seven days a week.',
+      "From Center Ridge Road to the newer subdivisions, we bring our detailing setup to North Ridgeville driveways seven days a week.",
     localNote:
-      'Long commutes on I-480 and I-90 mean a lot of time in the car. A deep Interior Detail — vents, console, seats and mats — makes those drives a lot more pleasant.',
-    nearby: ['avon', 'elyria', 'westlake'],
+      "Long commutes on I-480 and I-90 mean a lot of time in the car. A deep Interior Detail — vents, console, seats and mats — makes those drives a lot more pleasant.",
+    nearby: ["avon", "elyria", "westlake"],
   },
   {
-    slug: 'amherst',
-    name: 'Amherst',
-    county: 'Lorain County',
-    zips: ['44001'],
+    slug: "amherst",
+    name: "Amherst",
+    county: "Lorain County",
+    zips: ["44001"],
     blurb:
-      'Mobile car detailing for Amherst — we come to you for hand washes, deep interior cleaning and complete inside-and-out details.',
+      "Mobile car detailing for Amherst — we come to you for hand washes, deep interior cleaning and complete inside-and-out details.",
     localNote:
-      'Country roads and farm-adjacent driving kick up dust and mud. Our Exterior Wash includes a wheel deep-clean and door jamb wipe down, so the grime doesn’t come right back.',
-    nearby: ['lorain', 'elyria', 'vermilion'],
+      "Country roads and farm-adjacent driving kick up dust and mud. Our Exterior Wash includes a wheel deep-clean and door jamb wipe down, so the grime doesn’t come right back.",
+    nearby: ["lorain", "elyria", "vermilion"],
   },
   {
-    slug: 'vermilion',
-    name: 'Vermilion',
-    county: 'Erie & Lorain Counties',
-    zips: ['44089'],
+    slug: "vermilion",
+    name: "Vermilion",
+    county: "Erie & Lorain Counties",
+    zips: ["44089"],
     blurb:
-      'From the harbor to the neighborhoods off Liberty Avenue, we detail cars across Vermilion at your home.',
+      "From the harbor to the neighborhoods off Liberty Avenue, we detail cars across Vermilion at your home.",
     localNote:
-      'Boat-season trips and lakefront parking leave sand and water spots on paint and glass. A hand wash with microfiber dry and a ceramic spray adds protection that sheds water.',
-    nearby: ['amherst', 'lorain', 'sheffield-lake'],
+      "Boat-season trips and lakefront parking leave sand and water spots on paint and glass. A hand wash with microfiber dry and a ceramic spray adds protection that sheds water.",
+    nearby: ["amherst", "lorain", "sheffield-lake"],
   },
   {
-    slug: 'bay-village',
-    name: 'Bay Village',
-    county: 'Cuyahoga County',
-    zips: ['44140'],
+    slug: "bay-village",
+    name: "Bay Village",
+    county: "Cuyahoga County",
+    zips: ["44140"],
     blurb:
-      'Just across the county line from Avon Lake, Bay Village is an easy trip for us — evening and weekend appointments available.',
+      "Just across the county line from Avon Lake, Bay Village is an easy trip for us — evening and weekend appointments available.",
     localNote:
-      'Tree-lined Bay Village streets mean sap and bird droppings on your paint. Prompt hand washing and a clay bar treatment remove them before they etch the clear coat.',
-    nearby: ['avon-lake', 'westlake', 'sheffield-lake'],
+      "Tree-lined Bay Village streets mean sap and bird droppings on your paint. Prompt hand washing and a clay bar treatment remove them before they etch the clear coat.",
+    nearby: ["avon-lake", "westlake", "sheffield-lake"],
   },
   {
-    slug: 'westlake',
-    name: 'Westlake',
-    county: 'Cuyahoga County',
-    zips: ['44145'],
+    slug: "westlake",
+    name: "Westlake",
+    county: "Cuyahoga County",
+    zips: ["44145"],
     blurb:
-      'Mobile detailing for Westlake homes — skip the drive to a detail shop and get showroom results in your own driveway.',
+      "Mobile detailing for Westlake homes — skip the drive to a detail shop and get showroom results in your own driveway.",
     localNote:
-      'Frequent highway driving on I-90 sandblasts the front of your car. Our bug & tar removal plus a Paint Protection Film spot on the hood edge help keep the front end looking new.',
-    nearby: ['bay-village', 'north-ridgeville', 'avon'],
+      "Frequent highway driving on I-90 sandblasts the front of your car. Our bug & tar removal plus a Paint Protection Film spot on the hood edge help keep the front end looking new.",
+    nearby: ["bay-village", "north-ridgeville", "avon"],
   },
 ];
 
-export const getServiceArea = (slug: string) => serviceAreas.find((a) => a.slug === slug);
+export const getServiceArea = (slug: string) =>
+  serviceAreas.find((a) => a.slug === slug);
 
-export const areaNames = (list = serviceAreas) => list.map((a) => a.name).join(', ');
+export const areaNames = (list = serviceAreas) =>
+  list.map((a) => a.name).join(", ");
 
 export const generalFaqs: Faq[] = [
   waterPowerFaq,
   {
-    q: 'Where do you provide mobile car detailing?',
+    q: "Where do you provide mobile car detailing?",
     a: `We're based in Sheffield Lake and serve the surrounding area, including ${areaNames(
       serviceAreas.filter((a) => !a.homeBase),
     )}. Not sure if you're in range? Call ${site.phone.display}.`,
   },
   {
-    q: 'How much does mobile car detailing cost?',
-    a: 'Prices depend on vehicle size. A Full Detail is $120 for a sedan, $145 for an SUV and $165 for a truck or van. An Interior Detail is $75 / $90 / $105 and an Exterior Wash is $50 / $60 / $70. Heavily soiled vehicles may cost more, and we always confirm the price before we start.',
+    q: "How much does mobile car detailing cost?",
+    a: "Prices depend on vehicle size. A Full Detail is $120 for a sedan, $145 for an SUV and $165 for a truck or van. An Interior Detail is $75 / $90 / $105 and an Exterior Wash is $50 / $60 / $70. Heavily soiled vehicles may cost more, and we always confirm the price before we start.",
   },
   {
-    q: 'How long does a detail take?',
-    a: 'An Exterior Wash takes about 45–60 minutes, an Interior Detail 60–90 minutes and a Full Detail 2–3 hours, depending on the size and condition of the vehicle.',
+    q: "How long does a detail take?",
+    a: "An Exterior Wash takes about 45–60 minutes, an Interior Detail 60–90 minutes and a Full Detail 2–3 hours, depending on the size and condition of the vehicle.",
   },
   {
-    q: 'What are your hours?',
-    a: `We detail ${hours.map((h) => `${h.label}, ${h.display}`).join(' and ')}. Evening and weekend appointments are our specialty.`,
+    q: "What are your hours?",
+    a: `We detail ${hours.map((h) => `${h.label}, ${h.display}`).join(" and ")}. Evening and weekend appointments are our specialty.`,
   },
   {
-    q: 'How do I book?',
+    q: "How do I book?",
     a: `Book online or call ${site.phone.display}. If you send a booking request, we confirm your appointment within 24 hours by phone or email.`,
   },
   {
-    q: 'Do you detail in the winter?',
-    a: 'Yes. Interior Details only need an electrical outlet, so they run all winter. If you have a heated or attached garage we can do any package inside it, and on days above freezing we offer a rinseless exterior wash.',
+    q: "Do you detail in the winter?",
+    a: "Yes. Interior Details only need an electrical outlet, so they run all winter. If you have a heated or attached garage we can do any package inside it, and on days above freezing we offer a rinseless exterior wash.",
   },
   {
-    q: 'Do you sell gift cards?',
-    a: 'Yes — digital gift cards in any amount, delivered by email and easy to print. They work for every package and add-on. See the Gift Cards page.',
+    q: "Do you sell gift cards?",
+    a: "Yes — digital gift cards in any amount, delivered by email and easy to print. They work for every package and add-on. See the Gift Cards page.",
   },
 ];
 
