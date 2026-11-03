@@ -63,8 +63,6 @@ export const site = {
     tiktok: "",
     facebook: "",
   },
-  // Winter service note (outlet-only interiors, garage details). Turn off in April.
-  winterServices: true,
 } as const;
 
 // Vehicle size tiers. Every package and plan is priced per tier.
@@ -139,7 +137,7 @@ export const requirements = {
     "Booking an Interior Detail? We only need the outlet — no water.",
 };
 
-// Winter menu (Nov–Apr), shown while site.winterServices is on.
+// Winter menu, shown November through April (see winterServicesOn in seasons.ts).
 export const winterServices = {
   headline: "Detailing all winter long",
   intro:
@@ -238,12 +236,6 @@ export const addons: Addon[] = [
     name: "Leather Conditioning",
     price: 25,
     desc: "Premium cleaner and conditioner that keeps leather supple and helps prevent cracking.",
-  },
-  {
-    id: "ppf-spot",
-    name: "Paint Protection Film Spot",
-    price: 50,
-    desc: "Spot PPF on high-impact areas like the leading edge of the hood or front bumper.",
   },
 ];
 
@@ -755,7 +747,7 @@ export const serviceAreas: ServiceArea[] = [
     blurb:
       "Mobile detailing for Westlake homes — skip the drive to a detail shop and get showroom results in your own driveway.",
     localNote:
-      "Frequent highway driving on I-90 sandblasts the front of your car. Our bug & tar removal plus a Paint Protection Film spot on the hood edge help keep the front end looking new.",
+      "Frequent highway driving on I-90 sandblasts the front of your car. Our bug & tar removal plus a Ceramic Coating Spray help keep the front end looking new.",
     nearby: ["bay-village", "north-ridgeville", "avon"],
   },
 ];

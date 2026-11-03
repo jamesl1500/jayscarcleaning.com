@@ -12,6 +12,7 @@ import {
   type Package,
   type SizeTier,
 } from '@/lib/site';
+import { currentSeason, winterServicesOn, type Season } from '@/lib/seasons';
 
 const iconPaths = {
   check: 'M5 13l4 4L19 7',
@@ -32,6 +33,8 @@ const iconPaths = {
   gift: 'M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7',
   refresh: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
   snow: 'M12 2v20M4.93 4.93l14.14 14.14M2 12h20M4.93 19.07L19.07 4.93',
+  sun: 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z',
+  leaf: 'M5 19c0-8.284 5.716-14 14-14 0 8.284-5.716 14-14 14zm0 0l7-7',
   star: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
 } as const;
 
@@ -267,9 +270,53 @@ export function PackageCard({ pkg, headingLevel = 'h3' }: { pkg: Package; headin
   );
 }
 
+const seasonIcons: Record<Season, IconName> = {
+  winter: 'snow',
+  spring: 'sparkle',
+  summer: 'sun',
+  fall: 'leaf',
+};
+
+// This season's pitch and a link to book the package it's about.
+export function SeasonalPromo({ dark = false }: { dark?: boolean }) {
+  const season = currentSeason();
+  return (
+    <div
+      className={`flex gap-4 rounded-2xl p-4 sm:p-5 ${
+        dark ? 'bg-white/5 ring-1 ring-teal-400/25' : 'bg-teal-500/5 ring-1 ring-teal-600/20'
+      }`}
+    >
+      <span
+        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+          dark ? 'bg-teal-400/15 text-teal-300' : 'bg-teal-500/15 text-teal-700'
+        }`}
+      >
+        <Icon name={seasonIcons[season.id]} />
+      </span>
+      <div>
+        <p className={`text-xs font-semibold uppercase tracking-[0.16em] ${dark ? 'text-teal-300' : 'text-teal-700'}`}>
+          {season.name} special
+        </p>
+        <p className={`mt-1 font-bold ${dark ? 'text-white' : 'text-navy-900'}`}>{season.headline}</p>
+        <p className={`mt-1 text-sm leading-relaxed ${dark ? 'text-mist-200/80' : 'text-navy-600'}`}>{season.text}</p>
+        <Link
+          href={season.link.href}
+          className={`-mb-2 inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline ${
+            dark ? 'text-teal-300' : 'text-teal-700'
+          }`}
+        >
+          {season.link.label} →
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+// Defaults to this season's call to action; pages with a specific pitch pass
+// their own title and text.
 export function CtaBanner({
-  title = 'Ready for a spotless car?',
-  text = 'Book online in two minutes or give us a call — we bring the shine to your driveway.',
+  title = currentSeason().cta.title,
+  text = currentSeason().cta.text,
 }: {
   title?: string;
   text?: string;
@@ -486,7 +533,7 @@ export function TierTable({
 }
 
 export function WinterServices({ dark = false }: { dark?: boolean }) {
-  if (!site.winterServices) return null;
+  if (!winterServicesOn()) return null;
   return (
     <div className={`rounded-3xl p-5 sm:p-8 ${dark ? 'bg-navy-800/70 ring-1 ring-white/10' : 'bg-white ring-1 ring-mist-200'}`}>
       <p className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] ${dark ? 'text-teal-300' : 'text-teal-700'}`}>
