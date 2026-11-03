@@ -17,6 +17,7 @@ import {
   otherTiers,
   PackageCard,
   PlanAndGiftCards,
+  SeasonalPromo,
   SectionHeading,
   Testimonials,
   WhatYouNeed,
@@ -24,6 +25,7 @@ import {
   type IconName,
 } from '@/components/ui';
 import { pageMetadata } from '@/lib/metadata';
+import { winterServicesOn } from '@/lib/seasons';
 import { faqSchema, graph } from '@/lib/schema';
 import { addons, areaNames, generalFaqs, getPackage, hours, packages, serviceAreas, site, usd } from '@/lib/site';
 
@@ -92,6 +94,9 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <div className="mt-8 max-w-xl sm:mt-10">
+              <SeasonalPromo dark />
+            </div>
           </div>
 
           <div className="rounded-[2rem] bg-navy-800/80 p-6 ring-1 ring-white/10 backdrop-blur sm:p-9">
@@ -184,7 +189,10 @@ export default function Home() {
       {/* Plans, gift cards, winter */}
       <section className="bg-mist-50 py-16 sm:py-24">
         <Container className="space-y-5">
-          <SectionHeading eyebrow="More Ways to Book" title="Plans, gifts and winter detailing" />
+          <SectionHeading
+            eyebrow="More Ways to Book"
+            title={winterServicesOn() ? 'Plans, gifts and winter detailing' : 'Plans and gift cards'}
+          />
           <PlanAndGiftCards />
           <WinterServices />
         </Container>
